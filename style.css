@@ -1146,8 +1146,8 @@ img {
   }
 
   .opening-small {
-    font-size: 7px;
-    letter-spacing: 0.42em;
+    font-size: 10px;
+    letter-spacing: 0.34em;
     margin-bottom: 22px;
   }
 
@@ -1189,11 +1189,11 @@ img {
   }
 
   .view-button {
-    min-width: 210px;
-    padding: 15px 26px;
+    min-width: 225px;
+    padding: 17px 28px;
 
-    font-size: 9px;
-    letter-spacing: 0.30em;
+    font-size: 10px;
+    letter-spacing: 0.28em;
   }
 
 
