@@ -4,7 +4,7 @@ body{margin:0;background:#fbf5ef;color:#473b35;font-family:"DM Sans",sans-serif}
 button,a{font:inherit}
 button{cursor:pointer}
 .hidden{display:none}
-.opening{min-height:100svh;display:grid;place-items:center;position:relative;overflow:hidden;background:url("assets/photo2.jpg") center/cover no-repeat}
+.opening{min-height:100svh;display:grid;place-items:center;position:relative;overflow:hidden;background:url("assets/photo1.jpg") center/cover no-repeat}
 .opening-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(34,25,20,.35),rgba(34,25,20,.68))}
 .opening-content{position:relative;z-index:1;text-align:center;color:#fff;padding:28px}
 .eyebrow{text-transform:uppercase;letter-spacing:.28em;font-size:.72rem;margin:0 0 14px;opacity:.78}
