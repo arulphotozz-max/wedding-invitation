@@ -3,130 +3,135 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Our Wedding</title>
-
+  <meta name="theme-color" content="#f7efe7">
+  <title>Arulnithi & Surya — Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <section class="hero">
+  <div class="music-note" id="musicNote">♪</div>
 
-    <div class="overlay">
-
-      <p class="small-title">WE ARE GETTING MARRIED</p>
-
-      <h1>
-        Groom
-        <span>&</span>
-        Bride
-      </h1>
-
-      <p class="date">
-        15 • 12 • 2026
-      </p>
-
-      <p class="invite">
-        Together with their families,<br>
-        we invite you to celebrate our special day.
-      </p>
-
-      <button onclick="scrollToWedding()">
-        View Invitation ❤️
-      </button>
-
+  <section class="opening" id="opening">
+    <div class="opening-overlay"></div>
+    <div class="opening-content">
+      <p class="eyebrow">A little invitation</p>
+      <h1>A big beginning</h1>
+      <p class="opening-names">Arulnithi <span>&amp;</span> Surya</p>
+      <button class="primary-btn" id="viewInvitation">♥ View Invitation</button>
     </div>
-
   </section>
 
+  <main id="invitation" class="hidden">
+    <section class="hero">
+      <img src="assets/photo1.jpg" alt="Arulnithi and Surya">
+      <div class="hero-shade"></div>
+      <div class="hero-text">
+        <p>You are invited to celebrate</p>
+        <h2>Arulnithi <span>&amp;</span> Surya</h2>
+        <div class="date-line">25 · October · 2026</div>
+        <small>Sunday · Morning 6:00 AM</small>
+      </div>
+    </section>
 
-  <section class="welcome" id="wedding">
+    <section class="story section">
+      <p class="eyebrow">A beautiful beginning</p>
+      <h2>Our new beginning</h2>
+      <div class="ornament">♥</div>
+      <p class="story-text">
+        With hearts full of gratitude, we invite our family and friends to be part of
+        the next chapter of our love story. What began as a quiet conversation has grown
+        into a lifetime we cannot wait to share with you.
+      </p>
+    </section>
 
-    <p class="subtitle">SAVE THE DATE</p>
+    <section class="countdown section">
+      <p class="eyebrow">Our big day</p>
+      <h2>Save the Date</h2>
+      <div class="count-grid">
+        <div><strong id="days">00</strong><span>Days</span></div>
+        <div><strong id="hours">00</strong><span>Hours</span></div>
+        <div><strong id="minutes">00</strong><span>Minutes</span></div>
+        <div><strong id="seconds">00</strong><span>Seconds</span></div>
+      </div>
+      <p class="until">until we say “I do”</p>
+    </section>
 
-    <h2>Groom & Bride</h2>
+    <section class="events section">
+      <p class="eyebrow">The celebration</p>
+      <h2>Event Details</h2>
 
-    <p>
-      Two hearts, one beautiful journey.
-      We would love to have you with us
-      on our special day.
-    </p>
+      <div class="event-card">
+        <div class="event-icon">✦</div>
+        <p class="event-label">Reception</p>
+        <h3>24 October 2026</h3>
+        <p>Saturday · Evening 6:00 PM</p>
+        <p class="venue">Selvam Mahal A/c<br>Mulanur</p>
+      </div>
 
-  </section>
+      <div class="event-card featured">
+        <div class="event-icon">♥</div>
+        <p class="event-label">Wedding</p>
+        <h3>25 October 2026</h3>
+        <p>Sunday · Morning 6:00 AM</p>
+        <p class="venue">Selvam Mahal A/c<br>Mulanur</p>
+      </div>
 
-
-  <section class="details">
-
-    <div class="card">
-      <div class="icon">💍</div>
-      <h3>Wedding</h3>
-      <p>Tuesday, 15 December 2026</p>
-      <p>10:30 AM</p>
-    </div>
-
-    <div class="card">
-      <div class="icon">📍</div>
-      <h3>Venue</h3>
-      <p>Wedding Hall</p>
-      <p>Tiruppur, Tamil Nadu</p>
-
-      <a
-        href="https://maps.google.com/"
-        target="_blank">
-        View Location
+      <a class="map-btn" href="https://maps.app.goo.gl/WkeagVayUXEQbxtp6" target="_blank" rel="noopener">
+        📍 Open in Google Maps
       </a>
-    </div>
+    </section>
 
-  </section>
-
-
-  <section class="countdown">
-
-    <p class="subtitle">COUNTING THE DAYS</p>
-
-    <h2>Our Big Day</h2>
-
-    <div class="timer">
-
-      <div>
-        <strong id="days">0</strong>
-        <span>Days</span>
+    <section class="gallery section">
+      <p class="eyebrow">Photo gallery</p>
+      <h2>Moments we treasure</h2>
+      <div class="gallery-grid">
+        <button class="photo" data-src="assets/photo1.jpg"><img src="assets/photo1.jpg" alt="Arulnithi and Surya"></button>
+        <button class="photo" data-src="assets/photo2.jpg"><img src="assets/photo2.jpg" alt="Arulnithi and Surya"></button>
+        <button class="photo" data-src="assets/photo3.jpg"><img src="assets/photo3.jpg" alt="Arulnithi and Surya"></button>
+        <button class="photo" data-src="assets/photo4.jpg"><img src="assets/photo4.jpg" alt="Arulnithi and Surya"></button>
+        <button class="photo" data-src="assets/photo5.jpg"><img src="assets/photo5.jpg" alt="Arulnithi and Surya"></button>
+        <button class="photo" data-src="assets/photo6.jpg"><img src="assets/photo6.jpg" alt="Arulnithi and Surya"></button>
       </div>
+    </section>
 
-      <div>
-        <strong id="hours">0</strong>
-        <span>Hours</span>
+    <section class="directions section">
+      <p class="eyebrow">Find your way</p>
+      <h2>Directions</h2>
+      <div class="direction-card">
+        <div class="pin">⌖</div>
+        <h3>Selvam Mahal A/c</h3>
+        <p>Selvam Mahal, Mulanur</p>
+        <a class="map-btn" href="https://maps.app.goo.gl/WkeagVayUXEQbxtp6" target="_blank" rel="noopener">Directions</a>
       </div>
+    </section>
 
-      <div>
-        <strong id="minutes">0</strong>
-        <span>Minutes</span>
-      </div>
+    <section class="final section">
+      <p class="eyebrow">With love</p>
+      <h2>We can’t wait to<br>celebrate with you</h2>
+      <p>Two hearts, one beautiful beginning,<br>and a lifetime to look forward to.</p>
+      <div class="final-names">Arulnithi <span>&amp;</span> Surya</div>
+      <div class="footer-heart">♥</div>
+      <small>Made with love, for a beginning worth celebrating.</small>
+    </section>
+  </main>
 
-      <div>
-        <strong id="seconds">0</strong>
-        <span>Seconds</span>
-      </div>
+  <div class="lightbox" id="lightbox">
+    <button id="closeLightbox" aria-label="Close">×</button>
+    <img id="lightboxImg" src="" alt="Gallery image">
+  </div>
 
-    </div>
-
-  </section>
-
-
-  <section class="footer">
-
-    <h2>We can't wait to celebrate with you ❤️</h2>
-
-    <p>
-      With love,<br>
-      Groom & Bride
-    </p>
-
-  </section>
-
+  <div class="music-player" id="musicPlayer">
+    <iframe id="youtubeFrame"
+      src=""
+      title="Wedding music"
+      allow="autoplay; encrypted-media"
+      frameborder="0"></iframe>
+    <button id="musicToggle" aria-label="Toggle music">♫</button>
+  </div>
 
   <script src="script.js"></script>
-
 </body>
 </html>
