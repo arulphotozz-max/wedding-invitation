@@ -1,46 +1,37 @@
-/* =========================================
-   OPEN INVITATION
-========================================= */
+/* =========================
+   VIEW INVITATION
+========================= */
 
-const viewButton =
-  document.getElementById("viewInvitation");
+const viewButton = document.getElementById("viewInvitation");
+const opening = document.getElementById("opening");
+const invitation = document.getElementById("invitation");
 
-const opening =
-  document.getElementById("opening");
+viewButton.addEventListener("click", () => {
 
-const invitation =
-  document.getElementById("invitation");
+  opening.classList.add("hide");
 
+  setTimeout(() => {
 
-viewButton.addEventListener(
-  "click",
-  () => {
+    opening.style.display = "none";
 
-    opening.classList.add("hide");
+    invitation.classList.remove("hidden");
 
-    setTimeout(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant"
+    });
 
-      opening.style.display = "none";
+  }, 1200);
 
-      invitation.classList.remove("hidden");
-
-      window.scrollTo(0, 0);
-
-    }, 1200);
-
-  }
-);
+});
 
 
-
-/* =========================================
+/* =========================
    COUNTDOWN
-========================================= */
+========================= */
 
 const weddingDate =
-  new Date(
-    "2026-10-25T06:00:00+05:30"
-  );
+  new Date("2026-10-25T06:00:00+05:30");
 
 
 function updateCountdown() {
@@ -48,22 +39,15 @@ function updateCountdown() {
   const now = new Date();
 
   const difference =
-    weddingDate - now;
+    weddingDate.getTime() - now.getTime();
 
 
   if (difference <= 0) {
 
-    document.getElementById("days")
-      .textContent = "00";
-
-    document.getElementById("hours")
-      .textContent = "00";
-
-    document.getElementById("minutes")
-      .textContent = "00";
-
-    document.getElementById("seconds")
-      .textContent = "00";
+    document.getElementById("days").textContent = "00";
+    document.getElementById("hours").textContent = "00";
+    document.getElementById("minutes").textContent = "00";
+    document.getElementById("seconds").textContent = "00";
 
     return;
   }
@@ -78,48 +62,38 @@ function updateCountdown() {
 
   const hours =
     Math.floor(
-      (
-        difference /
-        (1000 * 60 * 60)
-      ) % 24
+      (difference /
+        (1000 * 60 * 60)) % 24
     );
 
 
   const minutes =
     Math.floor(
-      (
-        difference /
-        (1000 * 60)
-      ) % 60
+      (difference /
+        (1000 * 60)) % 60
     );
 
 
   const seconds =
     Math.floor(
-      (
-        difference /
-        1000
-      ) % 60
+      (difference /
+        1000) % 60
     );
 
 
-  document.getElementById("days")
-    .textContent =
+  document.getElementById("days").textContent =
     String(days).padStart(2, "0");
 
 
-  document.getElementById("hours")
-    .textContent =
+  document.getElementById("hours").textContent =
     String(hours).padStart(2, "0");
 
 
-  document.getElementById("minutes")
-    .textContent =
+  document.getElementById("minutes").textContent =
     String(minutes).padStart(2, "0");
 
 
-  document.getElementById("seconds")
-    .textContent =
+  document.getElementById("seconds").textContent =
     String(seconds).padStart(2, "0");
 
 }
@@ -127,66 +101,55 @@ function updateCountdown() {
 
 updateCountdown();
 
-setInterval(
-  updateCountdown,
-  1000
-);
+setInterval(updateCountdown, 1000);
 
 
-
-/* =========================================
-   MUSIC
-========================================= */
+/* =========================
+   YOUTUBE MUSIC
+========================= */
 
 const musicButton =
-  document.getElementById(
-    "musicButton"
-  );
+  document.getElementById("musicButton");
 
 const player =
-  document.getElementById(
-    "youtubePlayer"
-  );
+  document.getElementById("youtubePlayer");
 
 
 let musicPlaying = false;
 
 
-musicButton.addEventListener(
-  "click",
-  () => {
+musicButton.addEventListener("click", () => {
 
-    if (!musicPlaying) {
+  if (!musicPlaying) {
 
-      player.contentWindow.postMessage(
-        JSON.stringify({
-          event: "command",
-          func: "playVideo",
-          args: []
-        }),
-        "*"
-      );
+    player.contentWindow.postMessage(
+      JSON.stringify({
+        event: "command",
+        func: "playVideo",
+        args: []
+      }),
+      "*"
+    );
 
-      musicButton.textContent = "Ⅱ";
+    musicButton.textContent = "Ⅱ";
 
-      musicPlaying = true;
+    musicPlaying = true;
 
-    } else {
+  } else {
 
-      player.contentWindow.postMessage(
-        JSON.stringify({
-          event: "command",
-          func: "pauseVideo",
-          args: []
-        }),
-        "*"
-      );
+    player.contentWindow.postMessage(
+      JSON.stringify({
+        event: "command",
+        func: "pauseVideo",
+        args: []
+      }),
+      "*"
+    );
 
-      musicButton.textContent = "♪";
+    musicButton.textContent = "♪";
 
-      musicPlaying = false;
-
-    }
+    musicPlaying = false;
 
   }
-);
+
+});
