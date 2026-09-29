@@ -88,10 +88,10 @@ img {
 .opening-small {
   color: #cbb078;
 
-  font-size: 8px;
+  font-size: 13px;
   font-weight: 500;
 
-  letter-spacing: 0.48em;
+  letter-spacing: 0.30em;
 
   margin-bottom: 24px;
 
@@ -232,9 +232,9 @@ img {
   position: relative;
   z-index: 10;
 
-  min-width: 215px;
+  min-width: 245px;
 
-  padding: 15px 28px;
+  padding: 19px 30px;
 
   border:
     1px solid
@@ -246,10 +246,10 @@ img {
 
   color: #d7bd85;
 
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 500;
 
-  letter-spacing: 0.32em;
+  letter-spacing: 0.25em;
 
   cursor: pointer;
 
