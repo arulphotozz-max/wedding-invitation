@@ -1,120 +1,67 @@
-const viewBtn =
-  document.getElementById("viewInvitation");
+/* ==================================================
+   VIEW INVITATION
+================================================== */
 
-const invitation =
-  document.getElementById("invitation");
+const viewInvitation =
+  document.getElementById("viewInvitation");
 
 const opening =
   document.getElementById("opening");
 
-
-/* =========================
-   MUSIC
-========================= */
-
-const frame =
-  document.getElementById("youtubeFrame");
-
-const musicToggle =
-  document.getElementById("musicToggle");
-
-const youtubeId =
-  "r3oAMDsC-8Y";
-
-let musicOn = false;
+const invitation =
+  document.getElementById("invitation");
 
 
-function startMusic() {
+viewInvitation.addEventListener(
+  "click",
+  function () {
 
-  frame.src =
-    `https://www.youtube.com/embed/${youtubeId}` +
-    `?autoplay=1` +
-    `&loop=1` +
-    `&playlist=${youtubeId}` +
-    `&controls=0` +
-    `&rel=0` +
-    `&playsinline=1`;
+    opening.classList.add("fade-out");
 
-  musicOn = true;
+    setTimeout(function () {
 
-  musicToggle.textContent = "♫";
-}
+      opening.style.display = "none";
 
+      invitation.classList.remove("hidden");
 
-/* =========================
-   VIEW INVITATION
-========================= */
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
 
-viewBtn.addEventListener("click", () => {
-
-  invitation.classList.remove("hidden");
-
-  opening.style.display = "none";
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-
-  startMusic();
-
-});
-
-
-/* =========================
-   MUSIC BUTTON
-========================= */
-
-musicToggle.addEventListener("click", () => {
-
-  if (!musicOn) {
-
-    startMusic();
-
-  } else {
-
-    frame.src = "";
-
-    musicOn = false;
-
-    musicToggle.textContent = "🔇";
+    }, 600);
 
   }
+);
 
-});
 
-
-/* =========================
+/* ==================================================
    COUNTDOWN
-========================= */
+================================================== */
 
 const weddingDate =
-  new Date(
-    "2026-10-25T06:00:00+05:30"
-  ).getTime();
+  new Date("2026-10-25T06:00:00+05:30");
 
 
 function updateCountdown() {
 
-  const now = Date.now();
+  const now =
+    new Date();
 
-  const distance =
-    weddingDate - now;
+  const difference =
+    weddingDate.getTime() -
+    now.getTime();
 
 
-  if (distance <= 0) {
+  if (difference <= 0) {
 
-    document.getElementById("days")
-      .textContent = "00";
+    document.getElementById("days").textContent = "00";
 
-    document.getElementById("hours")
-      .textContent = "00";
+    document.getElementById("hours").textContent = "00";
 
-    document.getElementById("minutes")
-      .textContent = "00";
+    document.getElementById("minutes").textContent = "00";
 
-    document.getElementById("seconds")
-      .textContent = "00";
+    document.getElementById("seconds").textContent = "00";
 
     return;
   }
@@ -122,28 +69,31 @@ function updateCountdown() {
 
   const days =
     Math.floor(
-      distance /
+      difference /
       (1000 * 60 * 60 * 24)
     );
 
 
   const hours =
     Math.floor(
-      (distance /
-        (1000 * 60 * 60)) % 24
+      (difference /
+        (1000 * 60 * 60)) %
+      24
     );
 
 
   const minutes =
     Math.floor(
-      (distance /
-        (1000 * 60)) % 60
+      (difference /
+        (1000 * 60)) %
+      60
     );
 
 
   const seconds =
     Math.floor(
-      (distance / 1000) % 60
+      (difference / 1000) %
+      60
     );
 
 
@@ -177,65 +127,62 @@ setInterval(
 );
 
 
-/* =========================
-   GALLERY
-========================= */
+/* ==================================================
+   GALLERY LIGHTBOX
+================================================== */
+
+const galleryImages =
+  document.querySelectorAll(
+    ".gallery-item img"
+  );
 
 const lightbox =
   document.getElementById("lightbox");
 
-const lightboxImg =
-  document.getElementById("lightboxImg");
+const lightboxImage =
+  document.getElementById("lightboxImage");
+
+const lightboxClose =
+  document.getElementById("lightboxClose");
 
 
-document
-  .querySelectorAll(".photo")
-  .forEach(button => {
+galleryImages.forEach(function (image) {
 
-    button.addEventListener(
-      "click",
-      () => {
-
-        lightboxImg.src =
-          button.dataset.src;
-
-        lightbox.classList.add("show");
-
-      }
-    );
-
-  });
-
-
-/* =========================
-   CLOSE LIGHTBOX
-========================= */
-
-document
-  .getElementById("closeLightbox")
-  .addEventListener(
+  image.addEventListener(
     "click",
-    () => {
+    function () {
 
-      lightbox.classList.remove("show");
+      lightboxImage.src =
+        image.src;
 
-      lightboxImg.src = "";
+      lightbox.classList.add(
+        "active"
+      );
+
+      document.body.style.overflow =
+        "hidden";
 
     }
   );
 
+});
 
-/* Click outside image */
+
+lightboxClose.addEventListener(
+  "click",
+  closeLightbox
+);
+
 
 lightbox.addEventListener(
   "click",
-  event => {
+  function (event) {
 
-    if (event.target === lightbox) {
+    if (
+      event.target === lightbox
+    ) {
 
-      lightbox.classList.remove("show");
-
-      lightboxImg.src = "";
+      closeLightbox();
 
     }
 
@@ -243,19 +190,115 @@ lightbox.addEventListener(
 );
 
 
-/* ESC */
+function closeLightbox() {
+
+  lightbox.classList.remove(
+    "active"
+  );
+
+  document.body.style.overflow =
+    "";
+
+}
+
+
+/* ==================================================
+   ESC KEY
+================================================== */
 
 document.addEventListener(
   "keydown",
-  event => {
+  function (event) {
 
-    if (event.key === "Escape") {
+    if (
+      event.key === "Escape"
+    ) {
 
-      lightbox.classList.remove("show");
-
-      lightboxImg.src = "";
+      closeLightbox();
 
     }
 
   }
 );
+
+
+/* ==================================================
+   MUSIC
+================================================== */
+
+const musicButton =
+  document.getElementById(
+    "musicButton"
+  );
+
+const youtubePlayer =
+  document.getElementById(
+    "youtubePlayer"
+  );
+
+let musicPlaying = false;
+
+
+musicButton.addEventListener(
+  "click",
+  function () {
+
+    if (!musicPlaying) {
+
+      youtubePlayer.contentWindow.postMessage(
+        '{"event":"command","func":"playVideo","args":""}',
+        "*"
+      );
+
+      musicButton.textContent = "Ⅱ";
+
+      musicPlaying = true;
+
+    } else {
+
+      youtubePlayer.contentWindow.postMessage(
+        '{"event":"command","func":"pauseVideo","args":""}',
+        "*"
+      );
+
+      musicButton.textContent = "♪";
+
+      musicPlaying = false;
+
+    }
+
+  }
+);
+
+
+/* ==================================================
+   OPENING FADE
+================================================== */
+
+const style =
+  document.createElement("style");
+
+style.innerHTML = `
+
+.opening.fade-out {
+  animation:
+    openingFade 0.6s ease forwards;
+}
+
+@keyframes openingFade {
+
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+
+}
+
+`;
+
+document.head.appendChild(style);
