@@ -1,1 +1,223 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  background: #fffaf7;
+  color: #4a3630;
+  text-align: center;
+}
+
+.hero {
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(40, 20, 15, 0.35), rgba(40, 20, 15, 0.45)),
+    url("https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80")
+    center / cover no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.overlay {
+  color: white;
+  max-width: 600px;
+}
+
+.small-title {
+  font-size: 14px;
+  letter-spacing: 4px;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-size: clamp(48px, 13vw, 90px);
+  font-weight: normal;
+  line-height: 1;
+  margin-bottom: 25px;
+}
+
+.hero h1 span {
+  display: block;
+  font-size: 35px;
+  margin: 12px 0;
+}
+
+.date {
+  font-size: 20px;
+  letter-spacing: 4px;
+  margin-bottom: 25px;
+}
+
+.invite {
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+button {
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  padding: 13px 28px;
+  border-radius: 30px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: white;
+  color: #4a3630;
+}
+
+.welcome {
+  padding: 90px 25px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.subtitle {
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #a67c6b;
+  margin-bottom: 18px;
+}
+
+.welcome h2,
+.countdown h2 {
+  font-size: 42px;
+  font-weight: normal;
+  margin-bottom: 25px;
+}
+
+.welcome p:not(.subtitle) {
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.details {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 30px 20px 90px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 320px;
+  background: white;
+  padding: 40px 25px;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.card p {
+  line-height: 1.8;
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 18px;
+  color: #a67c6b;
+  text-decoration: none;
+  border-bottom: 1px solid #a67c6b;
+}
+
+.countdown {
+  background: #f4e8e1;
+  padding: 80px 20px;
+}
+
+.timer {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 35px;
+}
+
+.timer div {
+  background: white;
+  width: 100px;
+  padding: 20px 10px;
+  border-radius: 15px;
+}
+
+.timer strong {
+  display: block;
+  font-size: 32px;
+  font-weight: normal;
+}
+
+.timer span {
+  display: block;
+  font-size: 12px;
+  margin-top: 8px;
+  letter-spacing: 1px;
+}
+
+.footer {
+  padding: 80px 25px;
+}
+
+.footer h2 {
+  font-size: 28px;
+  font-weight: normal;
+  margin-bottom: 25px;
+}
+
+.footer p {
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+
+  .hero {
+    min-height: 100svh;
+  }
+
+  .hero h1 {
+    font-size: 55px;
+  }
+
+  .hero h1 span {
+    font-size: 28px;
+  }
+
+  .welcome h2,
+  .countdown h2 {
+    font-size: 35px;
+  }
+
+  .timer {
+    gap: 8px;
+  }
+
+  .timer div {
+    width: 75px;
+    padding: 15px 5px;
+  }
+
+  .timer strong {
+    font-size: 25px;
+  }
+}
