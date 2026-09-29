@@ -1,49 +1,68 @@
-function scrollToWedding() {
-  document.getElementById("wedding").scrollIntoView({
-    behavior: "smooth"
-  });
+const viewBtn = document.getElementById("viewInvitation");
+const invitation = document.getElementById("invitation");
+const musicPlayer = document.getElementById("musicPlayer");
+const frame = document.getElementById("youtubeFrame");
+const musicToggle = document.getElementById("musicToggle");
+
+const youtubeId = "r3oAMDsC-8Y";
+let musicOn = false;
+
+viewBtn.addEventListener("click", () => {
+  invitation.classList.remove("hidden");
+  document.getElementById("opening").style.display = "none";
+  window.scrollTo({top:0, behavior:"smooth"});
+  startMusic();
+});
+
+function startMusic(){
+  frame.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&loop=1&playlist=${youtubeId}&controls=0&rel=0&playsinline=1`;
+  musicOn = true;
+  musicToggle.textContent = "♫";
 }
 
+musicToggle.addEventListener("click", () => {
+  if(!musicOn){
+    startMusic();
+  }else{
+    frame.src = "";
+    musicOn = false;
+    musicToggle.textContent = "🔇";
+  }
+});
 
-// Wedding date
-const weddingDate = new Date("December 15, 2026 10:30:00").getTime();
+// Wedding countdown: 25 October 2026, 6:00 AM IST
+const weddingDate = new Date("2026-10-25T06:00:00+05:30").getTime();
 
-const countdown = setInterval(function () {
-
-  const now = new Date().getTime();
-
-  const difference = weddingDate - now;
-
-  if (difference <= 0) {
-    clearInterval(countdown);
-
-    document.getElementById("days").innerText = "0";
-    document.getElementById("hours").innerText = "0";
-    document.getElementById("minutes").innerText = "0";
-    document.getElementById("seconds").innerText = "0";
-
+function updateCountdown(){
+  const now = Date.now();
+  const distance = weddingDate - now;
+  if(distance <= 0){
+    ["days","hours","minutes","seconds"].forEach(id => document.getElementById(id).textContent = "00");
     return;
   }
+  document.getElementById("days").textContent = Math.floor(distance/(1000*60*60*24)).toString().padStart(2,"0");
+  document.getElementById("hours").textContent = Math.floor((distance/(1000*60*60))%24).toString().padStart(2,"0");
+  document.getElementById("minutes").textContent = Math.floor((distance/(1000*60))%60).toString().padStart(2,"0");
+  document.getElementById("seconds").textContent = Math.floor((distance/1000)%60).toString().padStart(2,"0");
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
 
-  const days = Math.floor(
-    difference / (1000 * 60 * 60 * 24)
-  );
+// Gallery lightbox
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
 
-  const hours = Math.floor(
-    (difference / (1000 * 60 * 60)) % 24
-  );
+document.querySelectorAll(".photo").forEach(btn => {
+  btn.addEventListener("click", () => {
+    lightboxImg.src = btn.dataset.src;
+    lightbox.classList.add("show");
+  });
+});
 
-  const minutes = Math.floor(
-    (difference / (1000 * 60)) % 60
-  );
+document.getElementById("closeLightbox").addEventListener("click", () => {
+  lightbox.classList.remove("show");
+});
 
-  const seconds = Math.floor(
-    (difference / 1000) % 60
-  );
-
-  document.getElementById("days").innerText = days;
-  document.getElementById("hours").innerText = hours;
-  document.getElementById("minutes").innerText = minutes;
-  document.getElementById("seconds").innerText = seconds;
-
-}, 1000);
+lightbox.addEventListener("click", e => {
+  if(e.target === lightbox) lightbox.classList.remove("show");
+});
