@@ -6,8 +6,28 @@ const viewButton = document.getElementById("viewInvitation");
 const opening = document.getElementById("opening");
 const invitation = document.getElementById("invitation");
 
+const musicButton = document.getElementById("musicButton");
+const player = document.getElementById("youtubePlayer");
+
+let musicPlaying = false;
+
+
 viewButton.addEventListener("click", () => {
 
+  /* Start music immediately when user clicks */
+  player.contentWindow.postMessage(
+    JSON.stringify({
+      event: "command",
+      func: "playVideo",
+      args: []
+    }),
+    "*"
+  );
+
+  musicPlaying = true;
+  musicButton.textContent = "Ⅱ";
+
+  /* Hide opening screen */
   opening.classList.add("hide");
 
   setTimeout(() => {
@@ -76,26 +96,21 @@ function updateCountdown() {
 
   const seconds =
     Math.floor(
-      (difference /
-        1000) % 60
+      (difference / 1000) % 60
     );
 
 
   document.getElementById("days").textContent =
     String(days).padStart(2, "0");
 
-
   document.getElementById("hours").textContent =
     String(hours).padStart(2, "0");
-
 
   document.getElementById("minutes").textContent =
     String(minutes).padStart(2, "0");
 
-
   document.getElementById("seconds").textContent =
     String(seconds).padStart(2, "0");
-
 }
 
 
@@ -105,18 +120,8 @@ setInterval(updateCountdown, 1000);
 
 
 /* =========================
-   YOUTUBE MUSIC
+   MUSIC BUTTON
 ========================= */
-
-const musicButton =
-  document.getElementById("musicButton");
-
-const player =
-  document.getElementById("youtubePlayer");
-
-
-let musicPlaying = false;
-
 
 musicButton.addEventListener("click", () => {
 
