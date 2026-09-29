@@ -1,6 +1,6 @@
-/* =====================================
-   OPENING
-===================================== */
+/* =====================================================
+   ELEMENTS
+===================================================== */
 
 const viewButton =
   document.getElementById("viewInvitation");
@@ -11,45 +11,32 @@ const opening =
 const invitation =
   document.getElementById("invitation");
 
-
-
-/* =====================================
-   MUSIC
-===================================== */
-
 const musicButton =
   document.getElementById("musicButton");
 
 const player =
   document.getElementById("youtubePlayer");
 
+
 let musicPlaying = false;
 
 
-
-/* =====================================
-   OPEN INVITATION
-===================================== */
+/* =====================================================
+   VIEW INVITATION
+===================================================== */
 
 viewButton.addEventListener("click", () => {
 
 
-  /* PLAY MUSIC */
+  /* MUSIC */
 
   player.contentWindow.postMessage(
-
     JSON.stringify({
-
       event: "command",
-
       func: "playVideo",
-
       args: []
-
     }),
-
     "*"
-
   );
 
 
@@ -58,41 +45,41 @@ viewButton.addEventListener("click", () => {
   musicButton.textContent = "Ⅱ";
 
 
-  /* OPENING ANIMATION */
+  /* OPENING FADE */
 
   opening.classList.add("hide");
 
 
   setTimeout(() => {
 
+
     opening.style.display = "none";
 
-    invitation.classList.remove("hidden");
+
+    invitation.classList.remove(
+      "hidden"
+    );
 
 
     window.scrollTo({
-
       top: 0,
-
       behavior: "instant"
-
     });
+
 
   }, 1200);
 
 });
 
 
-
-/* =====================================
-   WEDDING COUNTDOWN
-===================================== */
+/* =====================================================
+   COUNTDOWN
+===================================================== */
 
 const weddingDate =
   new Date(
     "2026-10-25T06:00:00+05:30"
   );
-
 
 
 function updateCountdown() {
@@ -108,30 +95,32 @@ function updateCountdown() {
     now.getTime();
 
 
-
-  /* WEDDING DATE PASSED */
-
   if (difference <= 0) {
 
-    document.getElementById("days")
-      .textContent = "00";
 
-    document.getElementById("hours")
-      .textContent = "00";
+    document.getElementById(
+      "days"
+    ).textContent = "00";
 
-    document.getElementById("minutes")
-      .textContent = "00";
 
-    document.getElementById("seconds")
-      .textContent = "00";
+    document.getElementById(
+      "hours"
+    ).textContent = "00";
+
+
+    document.getElementById(
+      "minutes"
+    ).textContent = "00";
+
+
+    document.getElementById(
+      "seconds"
+    ).textContent = "00";
+
 
     return;
-
   }
 
-
-
-  /* DAYS */
 
   const days =
     Math.floor(
@@ -140,70 +129,65 @@ function updateCountdown() {
     );
 
 
-
-  /* HOURS */
-
   const hours =
     Math.floor(
-      (difference /
-      (1000 * 60 * 60))
-      % 24
+      (
+        difference /
+        (1000 * 60 * 60)
+      ) % 24
     );
 
-
-
-  /* MINUTES */
 
   const minutes =
     Math.floor(
-      (difference /
-      (1000 * 60))
-      % 60
+      (
+        difference /
+        (1000 * 60)
+      ) % 60
     );
 
-
-
-  /* SECONDS */
 
   const seconds =
     Math.floor(
-      (difference /
-      1000)
-      % 60
+      (
+        difference /
+        1000
+      ) % 60
     );
 
 
-
-  document.getElementById("days")
-    .textContent =
+  document.getElementById(
+    "days"
+  ).textContent =
     String(days)
-    .padStart(2, "0");
+      .padStart(2, "0");
 
 
-  document.getElementById("hours")
-    .textContent =
+  document.getElementById(
+    "hours"
+  ).textContent =
     String(hours)
-    .padStart(2, "0");
+      .padStart(2, "0");
 
 
-  document.getElementById("minutes")
-    .textContent =
+  document.getElementById(
+    "minutes"
+  ).textContent =
     String(minutes)
-    .padStart(2, "0");
+      .padStart(2, "0");
 
 
-  document.getElementById("seconds")
-    .textContent =
+  document.getElementById(
+    "seconds"
+  ).textContent =
     String(seconds)
-    .padStart(2, "0");
+      .padStart(2, "0");
 
 }
 
 
-
-/* START COUNTDOWN */
-
 updateCountdown();
+
 
 setInterval(
   updateCountdown,
@@ -211,68 +195,51 @@ setInterval(
 );
 
 
-
-/* =====================================
+/* =====================================================
    MUSIC BUTTON
-===================================== */
+===================================================== */
 
 musicButton.addEventListener(
   "click",
   () => {
 
 
-    /* PLAY */
-
     if (!musicPlaying) {
 
 
       player.contentWindow.postMessage(
-
         JSON.stringify({
-
           event: "command",
-
           func: "playVideo",
-
           args: []
-
         }),
-
         "*"
-
       );
 
 
-      musicButton.textContent = "Ⅱ";
+      musicButton.textContent =
+        "Ⅱ";
+
 
       musicPlaying = true;
 
-    }
 
-
-    /* PAUSE */
-
-    else {
+    } else {
 
 
       player.contentWindow.postMessage(
-
         JSON.stringify({
-
           event: "command",
-
           func: "pauseVideo",
-
           args: []
-
         }),
-
         "*"
-
       );
 
 
-      musicButton.textContent = "♪";
+      musicButton.textContent =
+        "♪";
+
 
       musicPlaying = false;
 
