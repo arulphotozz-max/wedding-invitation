@@ -26,98 +26,338 @@ button {
   display: none;
 }
 
+
 /* =========================
-   OPENING
+   PREMIUM OPENING
 ========================= */
 
 .opening {
   min-height: 100svh;
-  display: grid;
-  place-items: center;
+
   position: relative;
   overflow: hidden;
 
-  background:
-    url("assets/photo1.jpg")
-    center / cover no-repeat;
-}
-
-.opening-overlay {
-  position: absolute;
-  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   background:
-    linear-gradient(
-      180deg,
-      rgba(30, 22, 18, 0.25),
-      rgba(30, 22, 18, 0.72)
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(126, 83, 27, 0.20),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      #25180c 0%,
+      #0e0a07 48%,
+      #050403 100%
     );
+
+  color: #f5d995;
 }
+
+
+/* Soft golden glow */
+
+.opening-glow {
+  position: absolute;
+
+  width: 430px;
+  height: 430px;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(218, 164, 67, 0.13),
+      rgba(218, 164, 67, 0.035) 45%,
+      transparent 72%
+    );
+
+  filter: blur(10px);
+
+  pointer-events: none;
+}
+
+
+/* Opening content */
 
 .opening-content {
   position: relative;
-  z-index: 1;
+
+  z-index: 2;
+
+  width: 100%;
 
   text-align: center;
-  color: #fff;
 
-  padding: 28px;
+  padding: 30px 20px;
 }
 
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.28em;
+
+/* Small title */
+
+.opening-eyebrow {
+  margin: 0;
+
+  color: #d8c39a;
+
+  font-family: "DM Sans", sans-serif;
+
   font-size: 0.72rem;
-  margin: 0 0 14px;
-  opacity: 0.78;
+
+  font-weight: 500;
+
+  letter-spacing: 0.48em;
+
+  text-transform: uppercase;
 }
+
+
+/* Gold decoration */
+
+.gold-line {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin: 18px auto 25px;
+
+  width: 340px;
+
+  max-width: 75%;
+}
+
+.gold-line::before,
+.gold-line::after {
+  content: "";
+
+  height: 1px;
+
+  flex: 1;
+
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      #b99048
+    );
+}
+
+.gold-line::after {
+  background:
+    linear-gradient(
+      to left,
+      transparent,
+      #b99048
+    );
+}
+
+.gold-line span {
+  color: #e3b95e;
+
+  font-size: 9px;
+
+  transform: rotate(45deg);
+}
+
+
+/* Main opening font */
 
 .opening h1 {
-  font:
-    600 clamp(3.4rem, 11vw, 7rem) / 0.85
+  margin: 0;
+
+  color: #f1d28e;
+
+  font-family:
     "Cormorant Garamond",
+    Georgia,
     serif;
 
-  margin: 0 0 22px;
-}
+  font-size:
+    clamp(4rem, 13vw, 7rem);
 
-.opening-names {
-  font:
-    500 1.2rem
-    "Cormorant Garamond",
-    serif;
+  font-weight: 500;
 
-  letter-spacing: 0.08em;
-  margin: 0 0 35px;
-}
-
-.opening-names span,
-.hero h2 span,
-.final-names span,
-.story-names span {
   font-style: italic;
-  padding: 0 6px;
+
+  line-height: 0.9;
+
+  letter-spacing: -0.035em;
+
+  text-shadow:
+    0 0 18px rgba(222, 174, 81, 0.18);
 }
 
-.primary-btn,
-.map-btn {
-  border: 0;
-  border-radius: 999px;
 
-  padding: 14px 25px;
+/* =========================
+   HEART MEDALLION
+========================= */
 
-  background: #fff;
-  color: #473b35;
+.heart-medallion {
+  position: relative;
 
-  text-decoration: none;
-  display: inline-block;
+  width: 270px;
+  height: 270px;
+
+  margin: 80px auto 70px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Outer circle */
+
+.medallion-ring {
+  position: absolute;
+
+  width: 250px;
+  height: 250px;
+
+  border-radius: 50%;
+
+  border: 1px solid
+    rgba(191, 151, 72, 0.55);
+
+  box-shadow:
+    0 0 30px
+    rgba(208, 158, 54, 0.10),
+
+    inset 0 0 20px
+    rgba(208, 158, 54, 0.05);
+}
+
+
+/* Inner ring */
+
+.medallion-ring::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 9px;
+
+  border-radius: 50%;
+
+  border: 1px solid
+    rgba(215, 177, 93, 0.18);
+}
+
+
+/* Gold circle */
+
+.medallion-circle {
+  position: relative;
+
+  width: 188px;
+  height: 188px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(
+      circle at 35% 28%,
+      #fff4ce 0%,
+      #e8c77c 42%,
+      #c4933d 100%
+    );
+
+  box-shadow:
+
+    0 0 20px
+    rgba(234, 191, 92, 0.55),
+
+    0 0 60px
+    rgba(204, 148, 48, 0.25),
+
+    inset 0 0 20px
+    rgba(255, 248, 218, 0.55);
+}
+
+
+/* Heart */
+
+.medallion-circle span {
+  color: #3c250e;
+
+  font-size: 3.4rem;
+
+  line-height: 1;
+
+  text-shadow:
+    0 2px 3px
+    rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================
+   VIEW INVITATION
+========================= */
+
+.opening .primary-btn {
+  min-width: 310px;
+
+  padding: 18px 28px;
+
+  border-radius: 50px;
+
+  border: 1px solid #c99b4c;
+
+  background:
+    rgba(20, 14, 8, 0.65);
+
+  color: #e6c47a;
+
+  font-family: "DM Sans", sans-serif;
+
+  font-size: 0.78rem;
+
+  font-weight: 500;
+
+  letter-spacing: 0.28em;
+
+  box-shadow:
+    0 0 20px
+    rgba(201, 155, 76, 0.08);
 
   transition: 0.3s ease;
 }
 
-.primary-btn:hover,
-.map-btn:hover {
+.opening .primary-btn span {
+  font-size: 0.55rem;
+
+  margin: 0 12px;
+
+  color: #d9ae5d;
+}
+
+.opening .primary-btn:hover {
   transform: translateY(-3px);
+
+  background:
+    rgba(201, 155, 76, 0.12);
+
+  box-shadow:
+    0 0 30px
+    rgba(201, 155, 76, 0.18);
 }
 
 
@@ -127,9 +367,11 @@ button {
 
 .hero {
   height: 88svh;
+
   min-height: 600px;
 
   position: relative;
+
   overflow: hidden;
 }
 
@@ -138,11 +380,13 @@ button {
   height: 100%;
 
   object-fit: cover;
+
   object-position: center 38%;
 }
 
 .hero-shade {
   position: absolute;
+
   inset: 0;
 
   background:
@@ -157,9 +401,11 @@ button {
 
   left: 0;
   right: 0;
+
   bottom: 55px;
 
   text-align: center;
+
   color: #fff;
 
   padding: 20px;
@@ -167,6 +413,7 @@ button {
 
 .hero-text p {
   font-size: 0.9rem;
+
   letter-spacing: 0.08em;
 }
 
@@ -179,14 +426,23 @@ button {
   margin: 15px 0;
 }
 
+.hero h2 span {
+  font-style: italic;
+
+  padding: 0 6px;
+}
+
 .date-line {
   font-size: 1.05rem;
+
   letter-spacing: 0.18em;
 }
 
 .hero small {
   display: block;
+
   margin-top: 12px;
+
   opacity: 0.9;
 }
 
@@ -194,7 +450,7 @@ button {
   margin-top: 35px;
 
   font-size: 0.68rem;
-  text-transform: uppercase;
+
   letter-spacing: 0.25em;
 
   opacity: 0.7;
@@ -202,11 +458,12 @@ button {
 
 
 /* =========================
-   COMMON SECTION
+   COMMON
 ========================= */
 
 .section {
   max-width: 900px;
+
   margin: auto;
 
   padding: 95px 22px;
@@ -225,6 +482,18 @@ button {
   color: #4b3a31;
 }
 
+.eyebrow {
+  text-transform: uppercase;
+
+  letter-spacing: 0.28em;
+
+  font-size: 0.72rem;
+
+  margin: 0 0 14px;
+
+  opacity: 0.78;
+}
+
 
 /* =========================
    STORY
@@ -238,12 +507,11 @@ button {
   margin: 25px 0;
 
   color: #a7775f;
-
-  font-size: 1.1rem;
 }
 
 .story-text {
   max-width: 680px;
+
   margin: auto;
 
   font:
@@ -270,6 +538,7 @@ button {
 
 .countdown {
   background: #f0e5db;
+
   max-width: none;
 }
 
@@ -292,7 +561,8 @@ button {
   border: 1px solid
     rgba(71, 59, 53, 0.15);
 
-  background: rgba(255, 255, 255, 0.35);
+  background:
+    rgba(255, 255, 255, 0.35);
 }
 
 .count-grid strong {
@@ -333,7 +603,7 @@ button {
 
   margin: 20px auto;
 
-  padding: 32px 28px;
+  padding: 30px;
 
   border: 1px solid #eadcd0;
 
@@ -344,6 +614,12 @@ button {
   box-shadow:
     0 18px 45px
     rgba(70, 50, 40, 0.09);
+}
+
+.event-icon {
+  font-size: 1.4rem;
+
+  margin-bottom: 8px;
 }
 
 .event-label {
@@ -369,6 +645,7 @@ button {
 
 .event-card .venue {
   line-height: 1.7;
+
   margin-top: 15px;
 }
 
@@ -376,6 +653,7 @@ button {
   margin-top: 15px;
 
   background: #4b3a31;
+
   color: #fff;
 }
 
@@ -446,6 +724,10 @@ button {
     rgba(255, 255, 255, 0.55);
 }
 
+.pin {
+  font-size: 2rem;
+}
+
 .direction-card h3 {
   font:
     600 2.2rem
@@ -510,6 +792,7 @@ button {
   position: fixed;
 
   right: 18px;
+
   bottom: 18px;
 
   z-index: 30;
@@ -560,6 +843,7 @@ button {
   display: none;
 
   align-items: center;
+
   justify-content: center;
 
   z-index: 100;
@@ -573,6 +857,7 @@ button {
 
 .lightbox img {
   max-width: 94vw;
+
   max-height: 90vh;
 
   object-fit: contain;
@@ -585,6 +870,7 @@ button {
   right: 20px;
 
   background: none;
+
   border: 0;
 
   color: #fff;
@@ -599,8 +885,50 @@ button {
 
 @media (max-width: 650px) {
 
+  .opening-eyebrow {
+    font-size: 0.68rem;
+
+    letter-spacing: 0.42em;
+  }
+
+  .opening h1 {
+    font-size:
+      clamp(3.5rem, 15vw, 5rem);
+  }
+
+  .heart-medallion {
+    width: 245px;
+    height: 245px;
+
+    margin-top: 70px;
+    margin-bottom: 60px;
+  }
+
+  .medallion-ring {
+    width: 225px;
+    height: 225px;
+  }
+
+  .medallion-circle {
+    width: 170px;
+    height: 170px;
+  }
+
+  .medallion-circle span {
+    font-size: 3rem;
+  }
+
+  .opening .primary-btn {
+    min-width: 290px;
+
+    padding: 17px 20px;
+
+    font-size: 0.75rem;
+  }
+
   .hero {
     height: 82svh;
+
     min-height: 560px;
   }
 
@@ -622,14 +950,6 @@ button {
 
   .section {
     padding: 72px 18px;
-  }
-
-  .opening h1 {
-    font-size: 4rem;
-  }
-
-  .hero h2 {
-    font-size: 4rem;
   }
 
 }
