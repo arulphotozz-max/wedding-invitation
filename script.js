@@ -1,37 +1,28 @@
-const viewBtn = document.getElementById("viewInvitation");
-const invitation = document.getElementById("invitation");
-const opening = document.getElementById("opening");
+const viewBtn =
+  document.getElementById("viewInvitation");
 
-const frame = document.getElementById("youtubeFrame");
-const musicToggle = document.getElementById("musicToggle");
+const invitation =
+  document.getElementById("invitation");
 
-const youtubeId = "r3oAMDsC-8Y";
+const opening =
+  document.getElementById("opening");
+
+
+/* =========================
+   MUSIC
+========================= */
+
+const frame =
+  document.getElementById("youtubeFrame");
+
+const musicToggle =
+  document.getElementById("musicToggle");
+
+const youtubeId =
+  "r3oAMDsC-8Y";
 
 let musicOn = false;
 
-
-/* =========================
-   VIEW INVITATION
-========================= */
-
-viewBtn.addEventListener("click", () => {
-
-  invitation.classList.remove("hidden");
-
-  opening.style.display = "none";
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-
-  startMusic();
-});
-
-
-/* =========================
-   WEDDING MUSIC
-========================= */
 
 function startMusic() {
 
@@ -50,6 +41,30 @@ function startMusic() {
 }
 
 
+/* =========================
+   VIEW INVITATION
+========================= */
+
+viewBtn.addEventListener("click", () => {
+
+  invitation.classList.remove("hidden");
+
+  opening.style.display = "none";
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+  startMusic();
+
+});
+
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
 musicToggle.addEventListener("click", () => {
 
   if (!musicOn) {
@@ -63,22 +78,20 @@ musicToggle.addEventListener("click", () => {
     musicOn = false;
 
     musicToggle.textContent = "🔇";
+
   }
 
 });
 
 
 /* =========================
-   WEDDING COUNTDOWN
+   COUNTDOWN
 ========================= */
 
-// Wedding:
-// 25 October 2026
-// 6:00 AM
-// India Standard Time
-
 const weddingDate =
-  new Date("2026-10-25T06:00:00+05:30").getTime();
+  new Date(
+    "2026-10-25T06:00:00+05:30"
+  ).getTime();
 
 
 function updateCountdown() {
@@ -89,13 +102,19 @@ function updateCountdown() {
     weddingDate - now;
 
 
-  // Wedding day reached
   if (distance <= 0) {
 
-    document.getElementById("days").textContent = "00";
-    document.getElementById("hours").textContent = "00";
-    document.getElementById("minutes").textContent = "00";
-    document.getElementById("seconds").textContent = "00";
+    document.getElementById("days")
+      .textContent = "00";
+
+    document.getElementById("hours")
+      .textContent = "00";
+
+    document.getElementById("minutes")
+      .textContent = "00";
+
+    document.getElementById("seconds")
+      .textContent = "00";
 
     return;
   }
@@ -128,20 +147,25 @@ function updateCountdown() {
     );
 
 
-  document.getElementById("days").textContent =
+  document.getElementById("days")
+    .textContent =
     String(days).padStart(2, "0");
 
 
-  document.getElementById("hours").textContent =
+  document.getElementById("hours")
+    .textContent =
     String(hours).padStart(2, "0");
 
 
-  document.getElementById("minutes").textContent =
+  document.getElementById("minutes")
+    .textContent =
     String(minutes).padStart(2, "0");
 
 
-  document.getElementById("seconds").textContent =
+  document.getElementById("seconds")
+    .textContent =
     String(seconds).padStart(2, "0");
+
 }
 
 
@@ -154,7 +178,7 @@ setInterval(
 
 
 /* =========================
-   GALLERY LIGHTBOX
+   GALLERY
 ========================= */
 
 const lightbox =
@@ -164,19 +188,21 @@ const lightboxImg =
   document.getElementById("lightboxImg");
 
 
-document.querySelectorAll(".photo")
+document
+  .querySelectorAll(".photo")
   .forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener(
+      "click",
+      () => {
 
-      const image =
-        button.dataset.src;
+        lightboxImg.src =
+          button.dataset.src;
 
-      lightboxImg.src = image;
+        lightbox.classList.add("show");
 
-      lightbox.classList.add("show");
-
-    });
+      }
+    );
 
   });
 
@@ -187,42 +213,49 @@ document.querySelectorAll(".photo")
 
 document
   .getElementById("closeLightbox")
-  .addEventListener("click", () => {
+  .addEventListener(
+    "click",
+    () => {
 
-    lightbox.classList.remove("show");
+      lightbox.classList.remove("show");
 
-    lightboxImg.src = "";
+      lightboxImg.src = "";
 
-  });
-
-
-/* Click outside image to close */
-
-lightbox.addEventListener("click", event => {
-
-  if (event.target === lightbox) {
-
-    lightbox.classList.remove("show");
-
-    lightboxImg.src = "";
-
-  }
-
-});
+    }
+  );
 
 
-/* =========================
-   ESC KEY
-========================= */
+/* Click outside image */
 
-document.addEventListener("keydown", event => {
+lightbox.addEventListener(
+  "click",
+  event => {
 
-  if (event.key === "Escape") {
+    if (event.target === lightbox) {
 
-    lightbox.classList.remove("show");
+      lightbox.classList.remove("show");
 
-    lightboxImg.src = "";
+      lightboxImg.src = "";
+
+    }
 
   }
+);
 
-});
+
+/* ESC */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (event.key === "Escape") {
+
+      lightbox.classList.remove("show");
+
+      lightboxImg.src = "";
+
+    }
+
+  }
+);
