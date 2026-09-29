@@ -1,4 +1,10 @@
+/* ==================================================
+   GOOGLE / BASE
+================================================== */
+
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -7,33 +13,33 @@ html {
 }
 
 body {
-  margin: 0;
-  background: #fbf5ef;
-  color: #473b35;
+  background: #080706;
+  color: #e7d8b8;
   font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 button,
 a {
-  font: inherit;
+  font-family: inherit;
 }
 
 button {
   cursor: pointer;
 }
 
-.hidden {
-  display: none;
-}
 
-
-/* =========================
-   PREMIUM OPENING
-========================= */
+/* ==================================================
+   OPENING
+================================================== */
 
 .opening {
   min-height: 100svh;
-
   position: relative;
   overflow: hidden;
 
@@ -43,141 +49,60 @@ button {
 
   background:
     radial-gradient(
-      circle at 50% 42%,
-      rgba(126, 83, 27, 0.20),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 50% 50%,
-      #25180c 0%,
-      #0e0a07 48%,
+      circle at 50% 45%,
+      #21180f 0%,
+      #100c08 42%,
       #050403 100%
     );
 
-  color: #f5d995;
+  color: #e8d4a5;
 }
 
+.opening::before {
+  content: "";
 
-/* Soft golden glow */
-
-.opening-glow {
   position: absolute;
-
-  width: 430px;
-  height: 430px;
-
-  left: 50%;
-  top: 50%;
-
-  transform: translate(-50%, -50%);
-
-  border-radius: 50%;
+  inset: 0;
 
   background:
     radial-gradient(
-      circle,
-      rgba(218, 164, 67, 0.13),
-      rgba(218, 164, 67, 0.035) 45%,
-      transparent 72%
+      circle at 50% 45%,
+      rgba(174, 130, 55, 0.09),
+      transparent 35%
     );
-
-  filter: blur(10px);
 
   pointer-events: none;
 }
 
-
-/* Opening content */
-
 .opening-content {
   position: relative;
-
   z-index: 2;
 
   width: 100%;
 
   text-align: center;
 
-  padding: 30px 20px;
+  padding: 25px 20px;
 }
 
-
-/* Small title */
-
 .opening-eyebrow {
-  margin: 0;
-
-  color: #d8c39a;
+  margin: 0 0 30px;
 
   font-family: "DM Sans", sans-serif;
 
-  font-size: 0.72rem;
+  font-size: 0.62rem;
 
   font-weight: 500;
 
-  letter-spacing: 0.48em;
+  letter-spacing: 0.42em;
+
+  color: #cdbb95;
 
   text-transform: uppercase;
 }
 
-
-/* Gold decoration */
-
-.gold-line {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  gap: 12px;
-
-  margin: 18px auto 25px;
-
-  width: 340px;
-
-  max-width: 75%;
-}
-
-.gold-line::before,
-.gold-line::after {
-  content: "";
-
-  height: 1px;
-
-  flex: 1;
-
-  background:
-    linear-gradient(
-      to right,
-      transparent,
-      #b99048
-    );
-}
-
-.gold-line::after {
-  background:
-    linear-gradient(
-      to left,
-      transparent,
-      #b99048
-    );
-}
-
-.gold-line span {
-  color: #e3b95e;
-
-  font-size: 9px;
-
-  transform: rotate(45deg);
-}
-
-
-/* Main opening font */
-
 .opening h1 {
   margin: 0;
-
-  color: #f1d28e;
 
   font-family:
     "Cormorant Garamond",
@@ -185,32 +110,35 @@ button {
     serif;
 
   font-size:
-    clamp(4rem, 13vw, 7rem);
+    clamp(3rem, 10vw, 5.4rem);
 
-  font-weight: 500;
+  line-height: 0.95;
+
+  font-weight: 400;
 
   font-style: italic;
 
-  line-height: 0.9;
+  letter-spacing: -0.025em;
 
-  letter-spacing: -0.035em;
+  color: #e7d09a;
 
   text-shadow:
-    0 0 18px rgba(222, 174, 81, 0.18);
+    0 0 15px
+    rgba(218, 177, 93, 0.12);
 }
 
 
-/* =========================
-   HEART MEDALLION
-========================= */
+/* ==================================================
+   HEART EFFECT
+================================================== */
 
-.heart-medallion {
+.heart-effect {
   position: relative;
 
-  width: 270px;
-  height: 270px;
+  width: 190px;
+  height: 190px;
 
-  margin: 80px auto 70px;
+  margin: 75px auto 65px;
 
   display: flex;
 
@@ -218,52 +146,35 @@ button {
   justify-content: center;
 }
 
-
-/* Outer circle */
-
-.medallion-ring {
+.heart-glow {
   position: absolute;
 
-  width: 250px;
-  height: 250px;
+  width: 120px;
+  height: 120px;
 
   border-radius: 50%;
 
-  border: 1px solid
-    rgba(191, 151, 72, 0.55);
+  background:
+    radial-gradient(
+      circle,
+      rgba(230, 190, 105, 0.30),
+      rgba(230, 190, 105, 0.08) 45%,
+      transparent 70%
+    );
 
-  box-shadow:
-    0 0 30px
-    rgba(208, 158, 54, 0.10),
+  filter: blur(8px);
 
-    inset 0 0 20px
-    rgba(208, 158, 54, 0.05);
+  animation:
+    heartGlow 2.5s ease-in-out infinite;
 }
 
-
-/* Inner ring */
-
-.medallion-ring::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 9px;
-
-  border-radius: 50%;
-
-  border: 1px solid
-    rgba(215, 177, 93, 0.18);
-}
-
-
-/* Gold circle */
-
-.medallion-circle {
+.heart-circle {
   position: relative;
 
-  width: 188px;
-  height: 188px;
+  z-index: 3;
+
+  width: 108px;
+  height: 108px;
 
   border-radius: 50%;
 
@@ -274,278 +185,425 @@ button {
 
   background:
     radial-gradient(
-      circle at 35% 28%,
-      #fff4ce 0%,
-      #e8c77c 42%,
-      #c4933d 100%
+      circle at 35% 30%,
+      #f8e6b7,
+      #d5ae62 65%,
+      #b7893e
     );
 
   box-shadow:
+    0 0 25px
+    rgba(220, 175, 82, 0.35);
 
-    0 0 20px
-    rgba(234, 191, 92, 0.55),
-
-    0 0 60px
-    rgba(204, 148, 48, 0.25),
-
-    inset 0 0 20px
-    rgba(255, 248, 218, 0.55);
+  animation:
+    heartPulse 2.2s ease-in-out infinite;
 }
 
+.heart-circle span {
+  font-size: 2rem;
 
-/* Heart */
-
-.medallion-circle span {
-  color: #3c250e;
-
-  font-size: 3.4rem;
+  color: #33200e;
 
   line-height: 1;
+}
 
-  text-shadow:
-    0 2px 3px
-    rgba(0, 0, 0, 0.12);
+.heart-ring {
+  position: absolute;
+
+  border-radius: 50%;
+
+  border: 1px solid
+    rgba(194, 157, 88, 0.25);
+}
+
+.ring-one {
+  width: 150px;
+  height: 150px;
+
+  animation:
+    ringPulse 2.8s ease-out infinite;
+}
+
+.ring-two {
+  width: 190px;
+  height: 190px;
+
+  border-color:
+    rgba(194, 157, 88, 0.16);
+
+  animation:
+    ringPulse 2.8s ease-out infinite 0.8s;
 }
 
 
-/* =========================
-   VIEW INVITATION
-========================= */
+/* ==================================================
+   HEART ANIMATIONS
+================================================== */
+
+@keyframes heartPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+
+    box-shadow:
+      0 0 20px
+      rgba(220, 175, 82, 0.25);
+  }
+
+  50% {
+    transform: scale(1.06);
+
+    box-shadow:
+      0 0 35px
+      rgba(220, 175, 82, 0.48);
+  }
+}
+
+@keyframes heartGlow {
+
+  0%,
+  100% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+@keyframes ringPulse {
+
+  0% {
+    transform: scale(0.9);
+    opacity: 0.15;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+
+  100% {
+    transform: scale(1.08);
+    opacity: 0;
+  }
+}
+
+
+/* ==================================================
+   OPENING BUTTON
+================================================== */
 
 .opening .primary-btn {
-  min-width: 310px;
 
-  padding: 18px 28px;
+  min-width: 245px;
+
+  padding: 15px 25px;
 
   border-radius: 50px;
 
-  border: 1px solid #c99b4c;
+  border: 1px solid
+    rgba(210, 169, 88, 0.8);
 
-  background:
-    rgba(20, 14, 8, 0.65);
+  background: transparent;
 
-  color: #e6c47a;
+  color: #d9bd7e;
 
-  font-family: "DM Sans", sans-serif;
+  font-family:
+    "DM Sans",
+    sans-serif;
 
-  font-size: 0.78rem;
+  font-size: 0.67rem;
 
   font-weight: 500;
 
-  letter-spacing: 0.28em;
-
-  box-shadow:
-    0 0 20px
-    rgba(201, 155, 76, 0.08);
+  letter-spacing: 0.30em;
 
   transition: 0.3s ease;
 }
 
-.opening .primary-btn span {
-  font-size: 0.55rem;
-
-  margin: 0 12px;
-
-  color: #d9ae5d;
-}
-
 .opening .primary-btn:hover {
-  transform: translateY(-3px);
 
   background:
-    rgba(201, 155, 76, 0.12);
+    rgba(210, 169, 88, 0.08);
 
   box-shadow:
-    0 0 30px
-    rgba(201, 155, 76, 0.18);
+    0 0 25px
+    rgba(210, 169, 88, 0.15);
+
+  transform: translateY(-2px);
 }
 
 
-/* =========================
+/* ==================================================
+   HIDDEN
+================================================== */
+
+.hidden {
+  display: none;
+}
+
+
+/* ==================================================
    HERO
-========================= */
+================================================== */
 
 .hero {
-  height: 88svh;
 
-  min-height: 600px;
+  min-height: 100svh;
 
   position: relative;
 
   overflow: hidden;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
 }
 
-.hero img {
-  width: 100%;
-  height: 100%;
+.hero-image {
 
-  object-fit: cover;
+  position: absolute;
 
-  object-position: center 38%;
+  inset: 0;
+
+  background-image:
+    url("assets/photo2.jpg");
+
+  background-size: cover;
+
+  background-position: center;
 }
 
-.hero-shade {
+.hero-overlay {
+
   position: absolute;
 
   inset: 0;
 
   background:
     linear-gradient(
-      transparent 25%,
-      rgba(28, 20, 16, 0.78)
+      to bottom,
+      rgba(0,0,0,0.25),
+      rgba(0,0,0,0.65)
     );
 }
 
-.hero-text {
-  position: absolute;
+.hero-content {
 
-  left: 0;
-  right: 0;
+  position: relative;
 
-  bottom: 55px;
+  z-index: 2;
 
-  text-align: center;
+  padding: 30px 20px;
 
   color: #fff;
-
-  padding: 20px;
 }
 
-.hero-text p {
-  font-size: 0.9rem;
+.small-text {
 
-  letter-spacing: 0.08em;
+  font-size: 0.62rem;
+
+  letter-spacing: 0.35em;
+
+  margin-bottom: 25px;
 }
 
 .hero h2 {
-  font:
-    600 clamp(3.2rem, 11vw, 7.5rem) / 0.85
+
+  font-family:
     "Cormorant Garamond",
+    Georgia,
     serif;
 
-  margin: 15px 0;
+  font-size:
+    clamp(4rem, 14vw, 8rem);
+
+  font-weight: 400;
+
+  line-height: 0.85;
 }
 
 .hero h2 span {
-  font-style: italic;
 
-  padding: 0 6px;
-}
-
-.date-line {
-  font-size: 1.05rem;
-
-  letter-spacing: 0.18em;
-}
-
-.hero small {
   display: block;
 
-  margin-top: 12px;
+  font-size: 0.45em;
 
-  opacity: 0.9;
+  margin: 12px 0;
+
+  font-style: italic;
+}
+
+.hero-subtitle {
+
+  margin-top: 35px;
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 1.5rem;
+
+  font-style: italic;
+}
+
+.hero-date {
+
+  margin-top: 25px;
+
+  font-size: 0.7rem;
+
+  letter-spacing: 0.3em;
 }
 
 .scroll-text {
-  margin-top: 35px;
 
-  font-size: 0.68rem;
+  margin-top: 70px;
 
-  letter-spacing: 0.25em;
+  font-size: 0.55rem;
 
-  opacity: 0.7;
+  letter-spacing: 0.3em;
+}
+
+.scroll-line {
+
+  width: 1px;
+
+  height: 50px;
+
+  background: rgba(255,255,255,0.6);
+
+  margin: 15px auto 0;
 }
 
 
-/* =========================
-   COMMON
-========================= */
+/* ==================================================
+   COMMON SECTIONS
+================================================== */
 
 .section {
-  max-width: 900px;
+
+  padding:
+    110px 20px;
+}
+
+.section-inner {
+
+  width: 100%;
+
+  max-width: 850px;
 
   margin: auto;
-
-  padding: 95px 22px;
 
   text-align: center;
 }
 
+.section-label {
+
+  font-size: 0.58rem;
+
+  letter-spacing: 0.35em;
+
+  color: #a9946c;
+
+  margin-bottom: 25px;
+}
+
 .section h2 {
-  font:
-    600 clamp(2.8rem, 7vw, 5rem) / 0.9
+
+  font-family:
     "Cormorant Garamond",
+    Georgia,
     serif;
 
-  margin: 0 0 24px;
+  font-size:
+    clamp(3rem, 9vw, 5.5rem);
 
-  color: #4b3a31;
+  font-weight: 400;
+
+  line-height: 0.95;
+
+  color: #e5d3ac;
 }
 
-.eyebrow {
-  text-transform: uppercase;
+.section h2 i {
 
-  letter-spacing: 0.28em;
-
-  font-size: 0.72rem;
-
-  margin: 0 0 14px;
-
-  opacity: 0.78;
+  font-weight: 400;
 }
 
 
-/* =========================
+/* ==================================================
    STORY
-========================= */
+================================================== */
 
 .story {
-  background: #fbf5ef;
-}
 
-.ornament {
-  margin: 25px 0;
-
-  color: #a7775f;
+  background:
+    radial-gradient(
+      circle at center,
+      #19120c,
+      #080706
+    );
 }
 
 .story-text {
-  max-width: 680px;
 
-  margin: auto;
+  max-width: 620px;
 
-  font:
-    400 1.15rem / 1.8
+  margin: 45px auto 0;
+
+  font-family:
     "Cormorant Garamond",
+    Georgia,
     serif;
+
+  font-size: 1.35rem;
+
+  line-height: 1.8;
+
+  color: #c9b99b;
 }
 
 .story-names {
-  margin-top: 30px;
 
-  font:
-    600 1.8rem
+  margin-top: 40px;
+
+  font-family:
     "Cormorant Garamond",
+    Georgia,
     serif;
 
-  opacity: 0.8;
+  font-size: 1.4rem;
+
+  color: #d8bd82;
+}
+
+.story-names span {
+
+  margin: 0 10px;
+
+  font-size: 0.9rem;
 }
 
 
-/* =========================
+/* ==================================================
    COUNTDOWN
-========================= */
+================================================== */
+
+.countdown-section {
+
+  background: #0c0907;
+}
 
 .countdown {
-  background: #f0e5db;
-
-  max-width: none;
-}
-
-.count-grid {
-  max-width: 700px;
-
-  margin: 35px auto 18px;
 
   display: grid;
 
@@ -553,292 +611,445 @@ button {
     repeat(4, 1fr);
 
   gap: 10px;
+
+  max-width: 650px;
+
+  margin: 55px auto 0;
 }
 
-.count-grid div {
-  padding: 22px 8px;
+.count-box {
 
-  border: 1px solid
-    rgba(71, 59, 53, 0.15);
+  border-top:
+    1px solid rgba(205, 176, 119, 0.35);
 
-  background:
-    rgba(255, 255, 255, 0.35);
+  border-bottom:
+    1px solid rgba(205, 176, 119, 0.35);
+
+  padding: 25px 5px;
 }
 
-.count-grid strong {
+.count-box span {
+
   display: block;
 
-  font:
-    600 clamp(2rem, 6vw, 3.6rem)
+  font-family:
     "Cormorant Garamond",
+    Georgia,
     serif;
+
+  font-size: 2.7rem;
+
+  color: #e5cf9e;
 }
 
-.count-grid span {
-  font-size: 0.68rem;
+.count-box small {
 
-  letter-spacing: 0.14em;
+  font-size: 0.48rem;
 
-  text-transform: uppercase;
+  letter-spacing: 0.2em;
+
+  color: #958366;
 }
 
-.until {
-  font:
-    italic 1rem
-    "Cormorant Garamond",
-    serif;
+.countdown-caption {
+
+  margin-top: 30px;
+
+  color: #9f9178;
+
+  font-size: 0.8rem;
 }
 
 
-/* =========================
+/* ==================================================
    EVENTS
-========================= */
+================================================== */
 
 .events {
-  background: #fffaf6;
+
+  background:
+    linear-gradient(
+      180deg,
+      #080706,
+      #120d08
+    );
 }
 
 .event-card {
-  max-width: 500px;
 
-  margin: 20px auto;
+  max-width: 700px;
 
-  padding: 30px;
+  margin: 60px auto 0;
 
-  border: 1px solid #eadcd0;
+  padding: 35px 25px;
 
-  background: #fff;
+  display: flex;
+
+  gap: 30px;
+
+  text-align: left;
+
+  border-top:
+    1px solid rgba(200,165,96,0.25);
+
+  border-bottom:
+    1px solid rgba(200,165,96,0.25);
 }
 
-.event-card.featured {
-  box-shadow:
-    0 18px 45px
-    rgba(70, 50, 40, 0.09);
+.event-card + .event-card {
+
+  margin-top: 25px;
 }
 
-.event-icon {
-  font-size: 1.4rem;
+.event-number {
 
-  margin-bottom: 8px;
-}
-
-.event-label {
-  letter-spacing: 0.18em;
-
-  text-transform: uppercase;
-
-  font-size: 0.7rem;
-}
-
-.event-card h3 {
-  font:
-    600 2.2rem
+  font-family:
     "Cormorant Garamond",
+    Georgia,
     serif;
 
-  margin: 8px 0;
+  font-size: 1.3rem;
+
+  color: #b89b67;
 }
 
-.event-card p {
-  margin: 8px 0;
+.event-type {
+
+  font-size: 0.55rem;
+
+  letter-spacing: 0.3em;
+
+  color: #a99168;
+
+  margin-bottom: 10px;
 }
 
-.event-card .venue {
-  line-height: 1.7;
+.event-info h3 {
 
-  margin-top: 15px;
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 2.1rem;
+
+  font-weight: 400;
+
+  color: #e5d1a7;
+
+  margin-bottom: 20px;
 }
 
-.map-btn {
-  margin-top: 15px;
+.event-detail {
 
-  background: #4b3a31;
+  color: #aaa08e;
 
-  color: #fff;
+  font-size: 0.8rem;
+
+  line-height: 1.8;
 }
 
 
-/* =========================
+/* ==================================================
+   LOCATION
+================================================== */
+
+.location {
+
+  background: #080706;
+}
+
+.location-card {
+
+  max-width: 600px;
+
+  margin: 55px auto 0;
+
+  padding: 50px 25px;
+
+  border:
+    1px solid rgba(196,158,88,0.25);
+}
+
+.location-icon {
+
+  font-size: 2rem;
+
+  color: #d4b779;
+
+  margin-bottom: 20px;
+}
+
+.location-card h3 {
+
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 2.4rem;
+
+  font-weight: 400;
+
+  color: #e3cfa5;
+}
+
+.location-card p {
+
+  margin: 10px 0 30px;
+
+  color: #9c917d;
+}
+
+.map-button {
+
+  display: inline-block;
+
+  padding: 14px 22px;
+
+  border:
+    1px solid rgba(211,175,102,0.55);
+
+  border-radius: 50px;
+
+  color: #d6bc83;
+
+  text-decoration: none;
+
+  font-size: 0.58rem;
+
+  letter-spacing: 0.2em;
+
+  transition: 0.3s;
+}
+
+.map-button:hover {
+
+  background:
+    rgba(211,175,102,0.08);
+
+  transform: translateY(-2px);
+}
+
+
+/* ==================================================
    GALLERY
-========================= */
+================================================== */
+
+.gallery-section {
+
+  background:
+    radial-gradient(
+      circle at center,
+      #171008,
+      #080706
+    );
+}
 
 .gallery {
-  background: #fbf5ef;
-}
 
-.gallery-grid {
+  margin-top: 55px;
+
   display: grid;
 
   grid-template-columns:
-    repeat(3, 1fr);
+    repeat(2, 1fr);
 
   gap: 12px;
-
-  max-width: 800px;
-
-  margin: 35px auto 0;
 }
 
-.photo {
-  padding: 0;
-
-  border: 0;
-
-  background: none;
+.gallery-item {
 
   overflow: hidden;
 
-  aspect-ratio: 1 / 1.15;
+  aspect-ratio: 1 / 1;
+
+  background: #111;
 }
 
-.photo img {
+.gallery-item img {
+
   width: 100%;
+
   height: 100%;
 
   object-fit: cover;
 
-  transition: 0.45s ease;
+  transition:
+    transform 0.7s ease;
 }
 
-.photo:hover img {
-  transform: scale(1.05);
+.gallery-item:hover img {
+
+  transform: scale(1.06);
 }
 
 
-/* =========================
-   DIRECTIONS
-========================= */
+/* ==================================================
+   FINAL
+================================================== */
 
-.directions {
-  background: #f0e5db;
-}
+.final-section {
 
-.direction-card {
-  max-width: 520px;
+  min-height: 100svh;
 
-  margin: auto;
+  position: relative;
 
-  padding: 38px;
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  overflow: hidden;
 
   background:
-    rgba(255, 255, 255, 0.55);
+    url("assets/photo1.jpg")
+    center / cover no-repeat;
 }
 
-.pin {
-  font-size: 2rem;
+.final-overlay {
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    rgba(0,0,0,0.68);
 }
 
-.direction-card h3 {
-  font:
-    600 2.2rem
+.final-content {
+
+  position: relative;
+
+  z-index: 2;
+
+  padding: 50px 25px;
+}
+
+.final-content h2 {
+
+  font-family:
     "Cormorant Garamond",
+    Georgia,
     serif;
 
-  margin: 10px 0;
-}
+  font-size:
+    clamp(3.5rem, 11vw, 6.5rem);
 
+  font-weight: 400;
 
-/* =========================
-   FINAL
-========================= */
+  line-height: 0.9;
 
-.final {
-  max-width: none;
-
-  padding: 115px 22px;
-
-  background: #4b3a31;
-
-  color: #fff;
-}
-
-.final h2 {
-  color: #fff;
+  color: #f0dfb9;
 }
 
 .final-text {
-  max-width: 550px;
 
-  margin: auto;
+  max-width: 500px;
 
-  line-height: 1.8;
+  margin: 40px auto 0;
 
-  opacity: 0.85;
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+
+  font-size: 1.25rem;
+
+  line-height: 1.7;
+
+  color: #d0c2a7;
 }
 
 .final-names {
-  font:
-    600 2.3rem
+
+  margin-top: 35px;
+
+  font-family:
     "Cormorant Garamond",
+    Georgia,
     serif;
 
-  margin-top: 38px;
+  font-size: 1.5rem;
+
+  color: #e4ca91;
 }
 
-.footer-heart {
-  margin: 28px 0 12px;
+.final-heart {
+
+  margin-top: 25px;
+
+  font-size: 1.3rem;
+
+  color: #e1c17b;
+
+  animation:
+    heartPulse 2s ease-in-out infinite;
 }
 
-.final small {
-  opacity: 0.65;
+.footer-text {
+
+  margin-top: 60px;
+
+  font-size: 0.55rem;
+
+  letter-spacing: 0.18em;
+
+  color: #a99b83;
 }
 
 
-/* =========================
-   MUSIC
-========================= */
+/* ==================================================
+   MUSIC BUTTON
+================================================== */
 
-.music-player {
+.music-control {
+
   position: fixed;
 
   right: 18px;
 
   bottom: 18px;
 
-  z-index: 30;
+  z-index: 1000;
 }
 
-.music-player iframe {
-  position: absolute;
+.music-control button {
 
-  width: 1px;
-  height: 1px;
+  width: 45px;
 
-  opacity: 0;
-
-  pointer-events: none;
-}
-
-.music-player button {
-  width: 50px;
-  height: 50px;
+  height: 45px;
 
   border-radius: 50%;
 
-  border: 1px solid
-    rgba(71, 59, 53, 0.2);
+  border:
+    1px solid rgba(220,190,125,0.5);
 
-  background: #fff;
+  background:
+    rgba(10,8,6,0.85);
 
-  color: #473b35;
+  color: #ddc38e;
 
-  box-shadow:
-    0 8px 25px
-    rgba(0, 0, 0, 0.12);
+  font-size: 1.1rem;
+
+  backdrop-filter: blur(8px);
 }
 
 
-/* =========================
+/* ==================================================
    LIGHTBOX
-========================= */
+================================================== */
 
 .lightbox {
+
   position: fixed;
 
   inset: 0;
 
-  background:
-    rgba(20, 15, 12, 0.94);
+  z-index: 2000;
 
   display: none;
 
@@ -846,110 +1057,153 @@ button {
 
   justify-content: center;
 
-  z-index: 100;
+  padding: 20px;
 
-  padding: 25px;
+  background:
+    rgba(0,0,0,0.95);
 }
 
-.lightbox.show {
+.lightbox.active {
+
   display: flex;
 }
 
 .lightbox img {
-  max-width: 94vw;
+
+  max-width: 95vw;
 
   max-height: 90vh;
 
   object-fit: contain;
 }
 
-.lightbox button {
+.lightbox-close {
+
   position: absolute;
 
-  top: 16px;
+  top: 20px;
+
   right: 20px;
 
-  background: none;
+  width: 45px;
 
-  border: 0;
+  height: 45px;
+
+  border: none;
+
+  background: transparent;
 
   color: #fff;
 
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 
-/* =========================
+/* ==================================================
    MOBILE
-========================= */
+================================================== */
 
 @media (max-width: 650px) {
 
   .opening-eyebrow {
-    font-size: 0.68rem;
 
-    letter-spacing: 0.42em;
+    font-size: 0.58rem;
+
+    letter-spacing: 0.38em;
+
+    margin-bottom: 25px;
   }
 
   .opening h1 {
-    font-size:
-      clamp(3.5rem, 15vw, 5rem);
+
+    font-size: 3.5rem;
   }
 
-  .heart-medallion {
-    width: 245px;
-    height: 245px;
+  .heart-effect {
 
-    margin-top: 70px;
-    margin-bottom: 60px;
+    width: 180px;
+    height: 180px;
+
+    margin-top: 65px;
+    margin-bottom: 55px;
   }
 
-  .medallion-ring {
-    width: 225px;
-    height: 225px;
+  .heart-circle {
+
+    width: 100px;
+    height: 100px;
   }
 
-  .medallion-circle {
-    width: 170px;
-    height: 170px;
+  .heart-circle span {
+
+    font-size: 1.9rem;
   }
 
-  .medallion-circle span {
-    font-size: 3rem;
+  .ring-one {
+
+    width: 140px;
+    height: 140px;
+  }
+
+  .ring-two {
+
+    width: 180px;
+    height: 180px;
   }
 
   .opening .primary-btn {
-    min-width: 290px;
 
-    padding: 17px 20px;
+    min-width: 230px;
 
-    font-size: 0.75rem;
+    font-size: 0.62rem;
   }
 
-  .hero {
-    height: 82svh;
+  .hero h2 {
 
-    min-height: 560px;
-  }
-
-  .hero img {
-    object-position: center center;
-  }
-
-  .count-grid {
-    grid-template-columns:
-      repeat(2, 1fr);
-
-    max-width: 420px;
-  }
-
-  .gallery-grid {
-    grid-template-columns:
-      repeat(2, 1fr);
+    font-size: 4.5rem;
   }
 
   .section {
-    padding: 72px 18px;
+
+    padding:
+      90px 18px;
+  }
+
+  .countdown {
+
+    gap: 5px;
+  }
+
+  .count-box {
+
+    padding: 20px 2px;
+  }
+
+  .count-box span {
+
+    font-size: 2rem;
+  }
+
+  .count-box small {
+
+    font-size: 0.4rem;
+  }
+
+  .event-card {
+
+    padding: 30px 15px;
+
+    gap: 18px;
+  }
+
+  .event-info h3 {
+
+    font-size: 1.8rem;
+  }
+
+  .gallery {
+
+    gap: 8px;
   }
 
 }
