@@ -1,249 +1,92 @@
-/* =====================================================
-   ELEMENTS
-===================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. OPENING SCREEN & AUDIO AUTO-START
+  const enterBtn = document.getElementById("enter-btn");
+  const openingScreen = document.getElementById("opening-screen");
+  const bgMusic = document.getElementById("bg-music");
+  const musicBtn = document.getElementById("music-btn");
 
-const viewButton =
-  document.getElementById("viewInvitation");
+  enterBtn.addEventListener("click", () => {
+    openingScreen.classList.add("hide");
 
-const opening =
-  document.getElementById("opening");
+    // Play Audio safely after user gesture
+    if (bgMusic) {
+      bgMusic.play().then(() => {
+        musicBtn.classList.add("playing");
+      }).catch(err => {
+        console.log("Audio autoplay prevented:", err);
+      });
+    }
+  });
 
-const invitation =
-  document.getElementById("invitation");
-
-const musicButton =
-  document.getElementById("musicButton");
-
-const player =
-  document.getElementById("youtubePlayer");
-
-
-let musicPlaying = false;
-
-
-/* =====================================================
-   VIEW INVITATION
-===================================================== */
-
-viewButton.addEventListener("click", () => {
-
-
-  /* MUSIC */
-
-  player.contentWindow.postMessage(
-    JSON.stringify({
-      event: "command",
-      func: "playVideo",
-      args: []
-    }),
-    "*"
-  );
-
-
-  musicPlaying = true;
-
-  musicButton.textContent = "Ⅱ";
-
-
-  /* OPENING FADE */
-
-  opening.classList.add("hide");
-
-
-  setTimeout(() => {
-
-
-    opening.style.display = "none";
-
-
-    invitation.classList.remove(
-      "hidden"
-    );
-
-
-    window.scrollTo({
-      top: 0,
-      behavior: "instant"
+  // Music Toggle Button
+  if (musicBtn && bgMusic) {
+    musicBtn.addEventListener("click", () => {
+      if (bgMusic.paused) {
+        bgMusic.play();
+        musicBtn.classList.add("playing");
+        musicBtn.textContent = "♪";
+      } else {
+        bgMusic.pause();
+        musicBtn.classList.remove("playing");
+        musicBtn.textContent = "❚❚";
+      }
     });
-
-
-  }, 1200);
-
-});
-
-
-/* =====================================================
-   COUNTDOWN
-===================================================== */
-
-const weddingDate =
-  new Date(
-    "2026-10-25T06:00:00+05:30"
-  );
-
-
-function updateCountdown() {
-
-
-  const now =
-    new Date();
-
-
-  const difference =
-    weddingDate.getTime()
-    -
-    now.getTime();
-
-
-  if (difference <= 0) {
-
-
-    document.getElementById(
-      "days"
-    ).textContent = "00";
-
-
-    document.getElementById(
-      "hours"
-    ).textContent = "00";
-
-
-    document.getElementById(
-      "minutes"
-    ).textContent = "00";
-
-
-    document.getElementById(
-      "seconds"
-    ).textContent = "00";
-
-
-    return;
   }
 
+  // 2. SCROLL REVEAL ANIMATIONS (IntersectionObserver)
+  const revealElements = document.querySelectorAll(".reveal");
 
-  const days =
-    Math.floor(
-      difference /
-      (1000 * 60 * 60 * 24)
-    );
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          // Optionally unobserve if you want it to trigger only once
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15,
+      rootMargin: "0px 0px -40px 0px"
+    }
+  );
 
+  revealElements.forEach(el => revealObserver.observe(el));
 
-  const hours =
-    Math.floor(
-      (
-        difference /
-        (1000 * 60 * 60)
-      ) % 24
-    );
+  // 3. COUNTDOWN TIMER CALCULATION
+  // Target: Wedding Morning - 25 October 2026, 06:00:00 AM (IST)
+  const weddingDate = new Date("October 25, 2026 06:00:00").getTime();
 
+  const daysEl = document.getElementById("days");
+  const hoursEl = document.getElementById("hours");
+  const minutesEl = document.getElementById("minutes");
+  const secondsEl = document.getElementById("seconds");
 
-  const minutes =
-    Math.floor(
-      (
-        difference /
-        (1000 * 60)
-      ) % 60
-    );
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
 
-
-  const seconds =
-    Math.floor(
-      (
-        difference /
-        1000
-      ) % 60
-    );
-
-
-  document.getElementById(
-    "days"
-  ).textContent =
-    String(days)
-      .padStart(2, "0");
-
-
-  document.getElementById(
-    "hours"
-  ).textContent =
-    String(hours)
-      .padStart(2, "0");
-
-
-  document.getElementById(
-    "minutes"
-  ).textContent =
-    String(minutes)
-      .padStart(2, "0");
-
-
-  document.getElementById(
-    "seconds"
-  ).textContent =
-    String(seconds)
-      .padStart(2, "0");
-
-}
-
-
-updateCountdown();
-
-
-setInterval(
-  updateCountdown,
-  1000
-);
-
-
-/* =====================================================
-   MUSIC BUTTON
-===================================================== */
-
-musicButton.addEventListener(
-  "click",
-  () => {
-
-
-    if (!musicPlaying) {
-
-
-      player.contentWindow.postMessage(
-        JSON.stringify({
-          event: "command",
-          func: "playVideo",
-          args: []
-        }),
-        "*"
-      );
-
-
-      musicButton.textContent =
-        "Ⅱ";
-
-
-      musicPlaying = true;
-
-
-    } else {
-
-
-      player.contentWindow.postMessage(
-        JSON.stringify({
-          event: "command",
-          func: "pauseVideo",
-          args: []
-        }),
-        "*"
-      );
-
-
-      musicButton.textContent =
-        "♪";
-
-
-      musicPlaying = false;
-
+    if (distance <= 0) {
+      daysEl.textContent = "00";
+      hoursEl.textContent = "00";
+      minutesEl.textContent = "00";
+      secondsEl.textContent = "00";
+      return;
     }
 
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    daysEl.textContent = String(days).padStart(2, "0");
+    hoursEl.textContent = String(hours).padStart(2, "0");
+    minutesEl.textContent = String(minutes).padStart(2, "0");
+    secondsEl.textContent = String(seconds).padStart(2, "0");
   }
-);
+
+  // Initial call & tick every second
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+});
