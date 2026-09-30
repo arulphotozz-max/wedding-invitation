@@ -3,205 +3,251 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arulnithi & Surya — Wedding Invitation</title>
+  <title>Arulnithi & Surya — Wedding Celebration</title>
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts used in friend site -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- FLOATING PARTICLES CANVAS -->
+  <canvas id="particles-canvas"></canvas>
+
   <!-- BACKGROUND AUDIO -->
-  <audio id="bg-music" loop preload="none">
+  <audio id="bg-audio" loop preload="none">
     <source src="assets/music.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- FLOATING MUSIC BUTTON -->
-  <div class="music" id="music-control">
-    <button id="music-btn" aria-label="Toggle Music">♪</button>
+  <!-- MUSIC TOGGLE BUTTON -->
+  <div class="music-toggle" id="music-toggle">
+    <button id="music-btn" aria-label="Toggle background music">
+      <span class="music-icon">♫</span>
+    </button>
   </div>
 
-  <!-- OPENING SCREEN -->
-  <section class="opening" id="opening-screen">
-    <div class="opening-background"></div>
-    <div class="opening-content">
-      <p class="opening-small">A LITTLE INVITATION</p>
-      <h1 class="opening-title">A big beginning</h1>
+  <!-- OPENING INTRO SCREEN -->
+  <section class="opening-screen" id="opening-screen">
+    <div class="opening-glow"></div>
+    <div class="opening-inner">
+      <p class="opening-eyebrow">A little invitation</p>
+      <h1 class="opening-heading">A big beginning</h1>
 
-      <div class="heart-animation">
-        <div class="heart-light"></div>
-        <div class="heart-ring ring-1"></div>
-        <div class="heart-ring ring-2"></div>
-        <div class="heart-ring ring-3"></div>
-        <div class="heart">♥</div>
+      <div class="opening-orb-wrap">
+        <div class="orb-halo"></div>
+        <div class="orb-ring orb-ring-1"></div>
+        <div class="orb-ring orb-ring-2"></div>
+        <div class="orb-ring orb-ring-3"></div>
+        <div class="orb-center">♥</div>
       </div>
 
-      <button type="button" class="view-button" id="enter-btn">
+      <button type="button" class="btn-open-invite" id="btn-open-invite">
         OPEN INVITATION
       </button>
     </div>
   </section>
 
-  <!-- MAIN INVITATION SITE -->
-  <main id="main-content" class="site-main">
+  <!-- MAIN SCROLLABLE SITE -->
+  <main id="main-site" class="main-site is-hidden">
 
     <!-- HERO SECTION -->
-    <header class="hero">
-      <div class="hero-photo"></div>
-      <div class="hero-dark"></div>
-      <div class="hero-content reveal">
-        <p class="hero-small">YOU ARE INVITED TO CELEBRATE</p>
-        <h2>
+    <header class="section-hero">
+      <div class="hero-bg-media">
+        <img src="assets/photo1.jpg" alt="Arulnithi & Surya" class="hero-img">
+        <div class="hero-overlay"></div>
+      </div>
+
+      <div class="hero-text-content reveal-item">
+        <p class="hero-tagline">YOU ARE INVITED TO CELEBRATE</p>
+        <h1 class="couple-title">
           <span>Arulnithi</span>
           <span class="amp">&amp;</span>
           <span>Surya</span>
-        </h2>
-        <p class="hero-subtitle">Our new beginning</p>
-        <div class="hero-date">25 · OCTOBER · 2026</div>
+        </h1>
+        <p class="hero-script">Our new beginning</p>
+        <p class="hero-date">25 · OCTOBER · 2026</p>
 
-        <div class="scroll-area">
-          <span>SCROLL TO EXPLORE</span>
-          <div class="scroll-line"></div>
+        <div class="scroll-cue">
+          <span>Scroll to explore</span>
+          <div class="scroll-cue-line"></div>
         </div>
       </div>
     </header>
 
-    <!-- OUR STORY -->
-    <section class="section story">
-      <div class="container reveal">
-        <p class="label">OUR STORY</p>
-        <h2>A beautiful <br><i>beginning</i></h2>
-        <p class="story-text">
+    <!-- OUR STORY / WELCOME -->
+    <section class="section-block story-section">
+      <div class="site-container reveal-item">
+        <p class="section-kicker">A beautiful</p>
+        <h2 class="section-heading">beginning</h2>
+        <p class="story-desc">
           With hearts full of gratitude, we invite our family and friends
           to be part of the next chapter of our love story. What began as
           a quiet conversation has grown into a lifetime we cannot wait to share with you.
         </p>
-        <div class="story-heart">♥</div>
+        <p class="signature">Arulnithi &amp; Surya</p>
       </div>
     </section>
 
-    <!-- COUNTDOWN -->
-    <section class="section countdown-section">
-      <div class="container reveal">
-        <p class="label">OUR BIG DAY</p>
-        <h2>Save the <i>Date</i></h2>
+    <!-- SAVE THE DATE / COUNTDOWN -->
+    <section class="section-block countdown-section">
+      <div class="site-container reveal-item">
+        <p class="section-kicker">Our big day</p>
+        <h2 class="section-heading">Save the Date</h2>
 
-        <div class="countdown" aria-live="polite">
-          <div class="countdown-card">
-            <strong id="days">00</strong>
-            <small>DAYS</small>
+        <div class="timer-grid" aria-live="polite">
+          <div class="timer-col">
+            <span class="timer-val" id="timer-days">00</span>
+            <span class="timer-lbl">Days</span>
           </div>
-          <div class="countdown-card">
-            <strong id="hours">00</strong>
-            <small>HOURS</small>
+          <div class="timer-col">
+            <span class="timer-val" id="timer-hours">00</span>
+            <span class="timer-lbl">Hours</span>
           </div>
-          <div class="countdown-card">
-            <strong id="minutes">00</strong>
-            <small>MINUTES</small>
+          <div class="timer-col">
+            <span class="timer-val" id="timer-mins">00</span>
+            <span class="timer-lbl">Minutes</span>
           </div>
-          <div class="countdown-card">
-            <strong id="seconds">00</strong>
-            <small>SECONDS</small>
+          <div class="timer-col">
+            <span class="timer-val" id="timer-secs">00</span>
+            <span class="timer-lbl">Seconds</span>
           </div>
         </div>
 
-        <p class="until">until we say <i>"I do"</i></p>
+        <p class="countdown-footnote">until we say “I do”</p>
       </div>
     </section>
 
-    <!-- EVENT DETAILS -->
-    <section class="section events">
-      <div class="container">
-        <div class="reveal">
-          <p class="label">THE CELEBRATION</p>
-          <h2>Event <i>Details</i></h2>
+    <!-- EVENT DETAILS (EXACT FRIEND SITE CARD STYLE) -->
+    <section class="section-block events-section">
+      <div class="site-container">
+        <div class="reveal-item">
+          <p class="section-kicker">The celebration</p>
+          <h2 class="section-heading">Event Details</h2>
         </div>
 
-        <div class="events-grid">
-          <!-- 01 RECEPTION -->
-          <article class="event-card reveal">
-            <div class="event-badge">01</div>
-            <div class="event-info">
-              <span class="event-label">RECEPTION</span>
-              <h3 class="event-title">A warm welcome</h3>
-              <div class="event-meta">
-                <p class="meta-date">24 October 2026</p>
-                <p class="meta-time">Evening · 6:00 PM</p>
-                <p class="meta-venue">Selvam Mahal A/c</p>
-                <p class="meta-city">Mulanur</p>
-              </div>
-            </div>
-          </article>
+        <!-- 01 RECEPTION CARD -->
+        <div class="event-card-wrapper reveal-item">
+          <div class="event-card-header">
+            <span class="event-badge-pill">01</span>
+            <h3 class="event-name">Reception</h3>
+            <p class="event-subname">A warm welcome</p>
+          </div>
 
-          <!-- 02 WEDDING -->
-          <article class="event-card reveal">
-            <div class="event-badge">02</div>
-            <div class="event-info">
-              <span class="event-label">WEDDING</span>
-              <h3 class="event-title">The big day</h3>
-              <div class="event-meta">
-                <p class="meta-date">25 October 2026</p>
-                <p class="meta-time">Morning · 6:00 AM</p>
-                <p class="meta-venue">Selvam Mahal A/c</p>
-                <p class="meta-city">Mulanur</p>
-              </div>
+          <div class="event-details-grid">
+            <div class="event-detail-item">
+              <span class="detail-label">Date</span>
+              <span class="detail-primary">24 October 2026</span>
+              <span class="detail-secondary">Saturday</span>
             </div>
-          </article>
+            <div class="event-detail-item">
+              <span class="detail-label">Time</span>
+              <span class="detail-primary">6:00 PM</span>
+              <span class="detail-secondary">Evening</span>
+            </div>
+            <div class="event-detail-item">
+              <span class="detail-label">Venue</span>
+              <span class="detail-primary">Selvam Mahal A/c</span>
+              <span class="detail-secondary">Mulanur, Tamil Nadu</span>
+            </div>
+          </div>
+
+          <a href="https://maps.app.goo.gl/WkeagVayUXEQbxtp6" target="_blank" rel="noopener noreferrer" class="btn-location-pill">
+            <span>View Location</span>
+            <i class="arrow">↗</i>
+          </a>
         </div>
+
+        <!-- 02 WEDDING CARD -->
+        <div class="event-card-wrapper reveal-item">
+          <div class="event-card-header">
+            <span class="event-badge-pill">02</span>
+            <h3 class="event-name">Muhurtham</h3>
+            <p class="event-subname">The big day</p>
+          </div>
+
+          <div class="event-details-grid">
+            <div class="event-detail-item">
+              <span class="detail-label">Date</span>
+              <span class="detail-primary">25 October 2026</span>
+              <span class="detail-secondary">Sunday</span>
+            </div>
+            <div class="event-detail-item">
+              <span class="detail-label">Time</span>
+              <span class="detail-primary">6:00 AM</span>
+              <span class="detail-secondary">Morning Muhurtham</span>
+            </div>
+            <div class="event-detail-item">
+              <span class="detail-label">Venue</span>
+              <span class="detail-primary">Selvam Mahal A/c</span>
+              <span class="detail-secondary">Mulanur, Tamil Nadu</span>
+            </div>
+          </div>
+
+          <a href="https://maps.app.goo.gl/WkeagVayUXEQbxtp6" target="_blank" rel="noopener noreferrer" class="btn-location-pill">
+            <span>View Location</span>
+            <i class="arrow">↗</i>
+          </a>
+        </div>
+
       </div>
     </section>
 
     <!-- PHOTO GALLERY -->
-    <section class="section gallery-section">
-      <div class="container">
-        <div class="reveal">
-          <p class="label">PHOTO GALLERY</p>
-          <h2>Moments we <i>treasure</i></h2>
+    <section class="section-block gallery-section">
+      <div class="site-container">
+        <div class="reveal-item">
+          <p class="section-kicker">Photo gallery</p>
+          <h2 class="section-heading">Moments we treasure</h2>
         </div>
 
-        <div class="gallery">
-          <div class="photo reveal"><img src="assets/photo1.jpg" alt="Moment 1" loading="lazy"></div>
-          <div class="photo reveal"><img src="assets/photo2.jpg" alt="Moment 2" loading="lazy"></div>
-          <div class="photo reveal"><img src="assets/photo3.jpg" alt="Moment 3" loading="lazy"></div>
-          <div class="photo reveal"><img src="assets/photo4.jpg" alt="Moment 4" loading="lazy"></div>
-          <div class="photo reveal"><img src="assets/photo5.jpg" alt="Moment 5" loading="lazy"></div>
-          <div class="photo reveal"><img src="assets/photo6.jpg" alt="Moment 6" loading="lazy"></div>
+        <div class="gallery-grid">
+          <div class="gallery-cell reveal-item"><img src="assets/photo1.jpg" alt="Moment 1" loading="lazy"></div>
+          <div class="gallery-cell reveal-item"><img src="assets/photo2.jpg" alt="Moment 2" loading="lazy"></div>
+          <div class="gallery-cell reveal-item"><img src="assets/photo3.jpg" alt="Moment 3" loading="lazy"></div>
+          <div class="gallery-cell reveal-item"><img src="assets/photo4.jpg" alt="Moment 4" loading="lazy"></div>
+          <div class="gallery-cell reveal-item"><img src="assets/photo5.jpg" alt="Moment 5" loading="lazy"></div>
+          <div class="gallery-cell reveal-item"><img src="assets/photo6.jpg" alt="Moment 6" loading="lazy"></div>
         </div>
       </div>
     </section>
 
-    <!-- LOCATION & DIRECTIONS -->
-    <section class="section location">
-      <div class="container reveal">
-        <p class="label">FIND YOUR WAY</p>
-        <h2><i>Directions</i></h2>
+    <!-- DIRECTIONS -->
+    <section class="section-block directions-section">
+      <div class="site-container reveal-item">
+        <p class="section-kicker">Find your way</p>
+        <h2 class="section-heading">Directions</h2>
 
-        <div class="location-box">
-          <h3>Selvam Mahal A/c</h3>
-          <p>Mulanur, Tamil Nadu</p>
-          <a href="https://maps.app.goo.gl/WkeagVayUXEQbxtp6" target="_blank" rel="noopener noreferrer">
-            OPEN IN GOOGLE MAPS ↗
+        <div class="direction-card">
+          <div class="pin-symbol">📍</div>
+          <p class="direction-venue">Selvam Mahal A/c</p>
+          <p class="direction-city">Mulanur, Tamil Nadu</p>
+          <a href="https://maps.app.goo.gl/WkeagVayUXEQbxtp6" target="_blank" rel="noopener noreferrer" class="btn-location-pill">
+            <span>Open in Google Maps</span>
+            <i class="arrow">↗</i>
           </a>
         </div>
       </div>
     </section>
 
     <!-- FINAL CLOSING -->
-    <footer class="final">
-      <div class="final-background"></div>
-      <div class="final-dark"></div>
-      <div class="final-content reveal">
-        <p class="label">WITH LOVE</p>
-        <h2>We can't wait<br>to celebrate<br><i>with you</i></h2>
-        <p class="final-text">
-          Your presence will make our special day even more beautiful.
-          We look forward to creating wonderful memories together.
+    <footer class="section-block final-section">
+      <div class="final-bg-media">
+        <img src="assets/photo6.jpg" alt="Celebration" class="final-img">
+        <div class="final-overlay"></div>
+      </div>
+
+      <div class="site-container final-content reveal-item">
+        <p class="section-kicker kicker-light">With love</p>
+        <h2 class="final-heading">We can’t wait to<br>celebrate with you</h2>
+        <p class="final-p">
+          Your presence would mean the world to us as we begin this beautiful
+          journey together. Come celebrate, laugh, and make memories with us.
         </p>
-        <div class="final-names">Arulnithi &amp; Surya</div>
-        <div class="final-heart">♥</div>
+        <p class="final-sign">Arulnithi &amp; Surya</p>
+        <p class="final-tag">Made with love, for a beginning worth celebrating.</p>
       </div>
     </footer>
 
