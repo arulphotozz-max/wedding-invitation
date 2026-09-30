@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Arulnithi & Surya — Wedding Invitation</title>
 
-  <!-- Google Fonts (Exact friend link fonts) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -17,10 +17,10 @@
   <!-- FLOATING PARTICLES CANVAS -->
   <canvas id="particles-canvas"></canvas>
 
-  <!-- BACKGROUND MUSIC -->
-  <audio id="bg-audio" loop preload="auto">
-    <source src="assets/music.mp3" type="audio/mpeg">
-  </audio>
+  <!-- HIDDEN YOUTUBE BACKGROUND PLAYER -->
+  <div id="youtube-player-container" style="position:fixed; width:1px; height:1px; left:-9999px; top:-9999px; opacity:0; pointer-events:none;">
+    <div id="player"></div>
+  </div>
 
   <!-- FLOATING MUSIC TOGGLE BUTTON -->
   <div class="music-toggle">
@@ -256,6 +256,8 @@
 
   </main>
 
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="script.js"></script>
 </body>
 </html>
