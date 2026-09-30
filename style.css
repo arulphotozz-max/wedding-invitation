@@ -431,8 +431,6 @@ img {
 
   left: 50%;
 
-  /* MOVED CLOSER TO DATE */
-
   bottom: -150px;
 
   transform:
@@ -688,6 +686,20 @@ img {
   gap: 25px;
 
   text-align: left;
+
+  /* NEW - soft circular background */
+  padding: 34px 35px;
+
+  border-radius: 50px;
+
+  background:
+    radial-gradient(
+      circle at 20% 50%,
+      rgba(212,183,125,0.18),
+      rgba(212,183,125,0.07) 48%,
+      rgba(212,183,125,0.02) 75%,
+      transparent 100%
+    );
 }
 
 .event + .event {
@@ -708,7 +720,7 @@ img {
     Georgia,
     serif;
 
-  font-size: 24px;
+  font-size: 27px;
 }
 
 .event-label {
@@ -716,7 +728,7 @@ img {
 
   color: #a18459;
 
-  font-size: 8px;
+  font-size: 9px;
 
   letter-spacing: 0.30em;
 }
@@ -731,13 +743,13 @@ img {
     Georgia,
     serif;
 
-  font-size: 34px;
+  font-size: 37px;
 
   font-weight: 400;
 }
 
 .event p:not(.event-label) {
-  margin-top: 6px;
+  margin-top: 7px;
 
   color: #766959;
 
@@ -746,7 +758,9 @@ img {
     Georgia,
     serif;
 
-  font-size: 17px;
+  font-size: 19px;
+
+  line-height: 1.35;
 }
 
 
@@ -845,23 +859,49 @@ img {
 }
 
 .location-box a {
-  display: inline-block;
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
 
   margin-top: 25px;
 
+  min-width: 220px;
+
+  padding: 13px 22px;
+
   color: #987847;
 
-  font-size: 8px;
+  font-size: 9px;
 
-  letter-spacing: 0.25em;
+  letter-spacing: 0.20em;
 
   text-decoration: none;
 
-  border-bottom:
+  border:
     1px solid
     rgba(152,120,71,0.45);
 
-  padding-bottom: 6px;
+  border-radius: 50px;
+
+  background:
+    rgba(152,120,71,0.08);
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.location-box a:hover {
+  background:
+    rgba(152,120,71,0.16);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 20px
+    rgba(126,101,70,0.12);
 }
 
 
@@ -1329,6 +1369,10 @@ img {
     gap: 15px;
 
     margin-top: 50px;
+
+    padding: 28px 22px;
+
+    border-radius: 40px;
   }
 
   .event + .event {
@@ -1336,8 +1380,21 @@ img {
     padding-top: 50px;
   }
 
+  .event-number {
+    font-size: 25px;
+  }
+
+  .event-label {
+    font-size: 9px;
+    margin-bottom: 12px;
+  }
+
   .event h3 {
-    font-size: 31px;
+    font-size: 34px;
+  }
+
+  .event p:not(.event-label) {
+    font-size: 18px;
   }
 
 
@@ -1359,6 +1416,12 @@ img {
 
   .location-box h3 {
     font-size: 30px;
+  }
+
+  .location-box a {
+    min-width: 210px;
+    padding: 13px 18px;
+    font-size: 8px;
   }
 
 
