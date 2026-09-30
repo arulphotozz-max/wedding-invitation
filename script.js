@@ -1,54 +1,85 @@
+let player;
+let isPlayerReady = false;
+
+// 1. YouTube IFrame API Callback
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '1',
+    width: '1',
+    videoId: 'r3oAMDsC-8Y', // Eppadi Vandhaayo Song
+    playerVars: {
+      autoplay: 0,
+      controls: 0,
+      loop: 1,
+      playlist: 'r3oAMDsC-8Y',
+      playsinline: 1,
+      rel: 0
+    },
+    events: {
+      onReady: () => {
+        isPlayerReady = true;
+        player.setVolume(80);
+      },
+      onStateChange: (event) => {
+        const musicBtn = document.getElementById("music-btn");
+        if (musicBtn) {
+          if (event.data === YT.PlayerState.PLAYING) {
+            musicBtn.classList.add("is-playing");
+          } else {
+            musicBtn.classList.remove("is-playing");
+          }
+        }
+      }
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const openBtn = document.getElementById("btn-open-invite");
   const openingScreen = document.getElementById("opening-screen");
   const mainSite = document.getElementById("main-site");
-  const bgAudio = document.getElementById("bg-audio");
   const musicBtn = document.getElementById("music-btn");
 
-  // 1. OPEN INVITATION & GUARANTEED AUDIO PLAY
-  openBtn.addEventListener("click", () => {
-    // Hide opening curtain & show main invitation
-    openingScreen.classList.add("hide");
-    mainSite.classList.remove("hidden-init");
-
-    // Audio Play triggered directly on user click
-    if (bgAudio) {
-      bgAudio.volume = 0.8;
-      const playPromise = bgAudio.play();
-
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            musicBtn.classList.add("is-playing");
-          })
-          .catch((err) => {
-            console.warn("Audio play prevented:", err);
-          });
-      }
+  // 2. Play YouTube music when clicking OPEN INVITATION
+  function startMusic() {
+    if (player && isPlayerReady && typeof player.playVideo === "function") {
+      player.playVideo();
+    } else {
+      // Retry in 200ms if player wasn't ready
+      setTimeout(startMusic, 200);
     }
+  }
 
-    // Trigger hero entrance animation smoothly
-    setTimeout(() => {
-      document.querySelectorAll(".hero-content").forEach(el => el.classList.add("active"));
-    }, 250);
-  });
+  if (openBtn) {
+    openBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      startMusic();
 
-  // Music toggle button controls
-  if (musicBtn && bgAudio) {
+      openingScreen.classList.add("hide");
+      mainSite.classList.remove("hidden-init");
+
+      setTimeout(() => {
+        document.querySelectorAll(".hero-content").forEach(el => el.classList.add("active"));
+      }, 250);
+    });
+  }
+
+  // 3. Music toggle button (Play / Pause)
+  if (musicBtn) {
     musicBtn.addEventListener("click", () => {
-      if (bgAudio.paused) {
-        bgAudio.play();
-        musicBtn.classList.add("is-playing");
-      } else {
-        bgAudio.pause();
-        musicBtn.classList.remove("is-playing");
+      if (player && isPlayerReady && typeof player.getPlayerState === "function") {
+        const state = player.getPlayerState();
+        if (state === YT.PlayerState.PLAYING) {
+          player.pauseVideo();
+        } else {
+          player.playVideo();
+        }
       }
     });
   }
 
-  // 2. SCROLL REVEAL ANIMATIONS (INTERSECTION OBSERVER)
+  // 4. Scroll Reveal Animations
   const revealElements = document.querySelectorAll(".reveal-item");
-
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
@@ -57,17 +88,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
     },
-    {
-      threshold: 0.12,
-      rootMargin: "0px 0px -40px 0px"
-    }
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
   );
-
   revealElements.forEach(el => revealObserver.observe(el));
 
-  // 3. LIVE COUNTDOWN TIMER TO 25 OCT 2026, 06:00 AM IST
+  // 5. Live Countdown Timer to 25 Oct 2026, 06:00 AM IST
   const weddingTarget = new Date("2026-10-25T06:00:00+05:30").getTime();
-
   const daysEl = document.getElementById("timer-days");
   const hoursEl = document.getElementById("timer-hours");
   const minsEl = document.getElementById("timer-minutes");
@@ -78,10 +104,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const diff = weddingTarget - now;
 
     if (diff <= 0) {
-      daysEl.textContent = "00";
-      hoursEl.textContent = "00";
-      minsEl.textContent = "00";
-      secsEl.textContent = "00";
+      if (daysEl) daysEl.textContent = "00";
+      if (hoursEl) hoursEl.textContent = "00";
+      if (minsEl) minsEl.textContent = "00";
+      if (secsEl) secsEl.textContent = "00";
       return;
     }
 
@@ -90,21 +116,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-    daysEl.textContent = String(d).padStart(2, "0");
-    hoursEl.textContent = String(h).padStart(2, "0");
-    minsEl.textContent = String(m).padStart(2, "0");
-    secsEl.textContent = String(s).padStart(2, "0");
+    if (daysEl) daysEl.textContent = String(d).padStart(2, "0");
+    if (hoursEl) hoursEl.textContent = String(h).padStart(2, "0");
+    if (minsEl) minsEl.textContent = String(m).padStart(2, "0");
+    if (secsEl) secsEl.textContent = String(s).padStart(2, "0");
   }
-
   runCountdown();
   setInterval(runCountdown, 1000);
 
-  // 4. FLOATING PETAL CANVAS PARTICLES
+  // 6. Floating Petal Canvas Particles
   const canvas = document.getElementById("particles-canvas");
   if (canvas) {
     const ctx = canvas.getContext("2d");
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
 
     window.addEventListener("resize", () => {
       width = canvas.width = window.innerWidth;
@@ -122,15 +147,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function draw() {
       ctx.clearRect(0, 0, width, height);
-
       particles.forEach(p => {
         p.x += p.speedX;
         p.y += p.speedY;
-
-        if (p.y > height) {
-          p.y = -10;
-          p.x = Math.random() * width;
-        }
+        if (p.y > height) { p.y = -10; p.x = Math.random() * width; }
         if (p.x > width) p.x = 0;
         if (p.x < 0) p.x = width;
 
@@ -139,10 +159,8 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
       });
-
       requestAnimationFrame(draw);
     }
-
     draw();
   }
 });
